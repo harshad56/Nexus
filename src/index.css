@@ -51,6 +51,11 @@
   padding: 0;
 }
 
+html, body, #root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   background-color: var(--bg-dark);
   color: var(--text-primary);
@@ -58,7 +63,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 a {
