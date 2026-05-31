@@ -16,18 +16,18 @@ export default function Footer() {
             Proudly based in Navi Mumbai, delivering globally.
           </p>
           <div className="footer__socials">
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="LinkedIn">
+            <span className="footer__social-link" aria-label="LinkedIn">
               <Linkedin size={18} />
-            </a>
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="GitHub">
+            </span>
+            <span className="footer__social-link" aria-label="GitHub">
               <Github size={18} />
-            </a>
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="Instagram">
+            </span>
+            <span className="footer__social-link" aria-label="Instagram">
               <Instagram size={18} />
-            </a>
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" style={{ width: 'auto', padding: '0 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}>
+            </span>
+            <span className="footer__social-link" style={{ width: 'auto', padding: '0 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}>
               Google Reviews
-            </a>
+            </span>
           </div>
         </div>
 
