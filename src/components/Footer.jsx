@@ -16,16 +16,16 @@ export default function Footer() {
             Proudly based in Navi Mumbai, delivering globally.
           </p>
           <div className="footer__socials">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="LinkedIn">
+            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="LinkedIn">
               <Linkedin size={18} />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="GitHub">
+            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="GitHub">
               <Github size={18} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Instagram">
+            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" aria-label="Instagram">
               <Instagram size={18} />
             </a>
-            <a href="https://business.google.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" style={{ width: 'auto', padding: '0 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}>
+            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming Soon!'); }} className="footer__social-link" style={{ width: 'auto', padding: '0 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}>
               Google Reviews
             </a>
           </div>
