@@ -11,6 +11,12 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero">
+      {/* Animated Background Glows */}
+      <div className="bg-glow-container">
+        <div className="bg-glow-blob bg-glow-blob--blue"></div>
+        <div className="bg-glow-blob bg-glow-blob--purple"></div>
+      </div>
+
       {/* Background image */}
       <img src={heroBg} alt="" className="hero__bg" aria-hidden="true" />
 
