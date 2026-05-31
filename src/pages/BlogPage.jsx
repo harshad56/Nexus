@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,22 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollPosition = scrollRef.current.scrollLeft;
+    const totalWidth = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    const maxIndex = blogPosts.length - 1;
+
+    let index = 0;
+    if (totalWidth > 0) {
+      index = Math.round((scrollPosition / totalWidth) * maxIndex);
+    }
+    setActiveIndex(Math.min(Math.max(index, 0), maxIndex));
+  };
+
   return (
     <div className="subpage-layout">
       {/* Decorative Spheres */}
@@ -51,7 +67,12 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="insights__grid" style={{ marginTop: '5rem' }}>
+        <div 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="insights__grid" 
+          style={{ marginTop: '5rem' }}
+        >
           {blogPosts.map((post, index) => (
             <motion.article
               key={index}
@@ -82,6 +103,24 @@ export default function BlogPage() {
                 </Link>
               </div>
             </motion.article>
+          ))}
+        </div>
+
+        {/* Mobile scroll indicator dots */}
+        <div className="mobile-dots">
+          {blogPosts.map((_, idx) => (
+            <div 
+              key={idx} 
+              className={`mobile-dot ${idx === activeIndex ? 'mobile-dot--active' : ''}`}
+              style={{
+                width: idx === activeIndex ? '24px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: idx === activeIndex ? 'var(--accent-blue)' : 'var(--border-light)',
+                transition: 'all 0.3s ease',
+                margin: '0 4px'
+              }}
+            />
           ))}
         </div>
       </div>
