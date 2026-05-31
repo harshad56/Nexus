@@ -93,7 +93,7 @@ export default function Logo({ size = 38, showText = true, className = '', style
       <text x="108" y="77" fontFamily="'Space Grotesk', 'Trebuchet MS', 'Segoe UI', sans-serif" fontSize="19" fontWeight="700" fill="var(--logo-tagline)" letterSpacing="4.5">SOLUTIONS</text>
 
       {/* Thin accent line under Solutions */}
-      <rect x="108" y="84" width="230" height="2" rx="1" fill="url(#ngrad)" opacity="0.65"/>
+      <rect x="108" y="84" width="145" height="2" rx="1" fill="url(#ngrad)" opacity="0.65"/>
     </svg>
   );
 }
