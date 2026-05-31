@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 110;
   padding: 0.5rem 0;
   background: var(--bg-navbar);
   backdrop-filter: blur(16px);
@@ -249,7 +249,7 @@
   right: clamp(1rem, 4vw, 1.5rem);
   width: 250px;
   max-width: calc(100vw - 2rem);
-  z-index: 105;
+  z-index: 115;
   background: var(--bg-mobile-menu);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);

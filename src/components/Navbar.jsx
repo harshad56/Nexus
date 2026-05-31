@@ -75,9 +75,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header
-      className={`navbar ${isScrolled || isMobileMenuOpen ? 'navbar--scrolled' : ''}`}
-    >
+    <>
+      <header
+        className={`navbar ${isScrolled || isMobileMenuOpen ? 'navbar--scrolled' : ''}`}
+      >
       <div className="navbar__container">
         {/* Brand / Logo */}
         <div className="navbar__brand">
@@ -140,6 +141,7 @@ export default function Navbar() {
           )}
         </button>
       </div>
+    </header>
 
       {/* Mobile Menu Sidebar Drawer */}
       <AnimatePresence>
@@ -211,6 +213,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
