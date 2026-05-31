@@ -39,6 +39,7 @@
 .navbar__brand {
   display: flex;
   align-items: center;
+  gap: 1rem;
   flex-shrink: 1;
   min-width: 0;
 }
@@ -341,6 +342,24 @@
 
   .navbar__toggle {
     display: flex !important;
+  }
+
+  .navbar__brand {
+    gap: 0.25rem;
+  }
+
+  .navbar__back-btn {
+    padding: 0.4rem;
+    background: transparent;
+    border-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    margin-left: -0.5rem;
+  }
+
+  .navbar__logo svg {
+    width: 168px !important;
+    height: 40px !important;
   }
 }
 
