@@ -1,0 +1,233 @@
+/* =========================================
+   INSIGHTS / BLOG SECTION
+   ========================================= */
+
+.insights {
+  position: relative;
+}
+
+/* ----- Header ----- */
+
+.insights__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.insights__header-left {
+  max-width: 550px;
+}
+
+.insights__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.insights__view-all:hover {
+  gap: 0.7rem;
+}
+
+/* ----- Grid ----- */
+
+.insights__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Featured card spans 2 columns with side-by-side layout */
+.insights__card--featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.insights__card--featured .insights__image {
+  border-radius: 20px 0 0 20px;
+  aspect-ratio: auto;
+  min-height: 100%;
+}
+
+.insights__card--featured .insights__body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ----- Card ----- */
+
+.insights__card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.insights__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: var(--bg-card-hover);
+}
+
+/* ----- Image ----- */
+
+.insights__image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.insights__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.insights__card:hover .insights__image img {
+  transform: scale(1.05);
+}
+
+/* ----- Body ----- */
+
+.insights__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-grow: 1;
+}
+
+/* ----- Category Badge ----- */
+
+.insights__category {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  color: var(--accent-blue);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+/* ----- Title ----- */
+
+.insights__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.insights__card:hover .insights__title {
+  color: var(--accent-blue);
+}
+
+/* ----- Excerpt ----- */
+
+.insights__excerpt {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ----- Meta (Read Time + Date) ----- */
+
+.insights__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.insights__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ----- Read Article Link ----- */
+
+.insights__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.insights__link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.insights__link:hover .insights__link-arrow {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .insights__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insights__card--featured {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .insights__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .insights__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insights__card--featured {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+
+  .insights__card--featured .insights__image {
+    border-radius: 20px 20px 0 0;
+    aspect-ratio: 16 / 10;
+    min-height: auto;
+  }
+}

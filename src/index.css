@@ -1,0 +1,490 @@
+:root {
+  --bg-dark: #f8f9fa;
+  --bg-dark-secondary: #f1f3f5;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-card-hover: rgba(0, 0, 0, 0.06);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --text-primary: #121214;
+  --text-secondary: #4b5563;
+  --accent-blue: #0284c7;
+  --accent-purple: #7c3aed;
+  --accent-gradient: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  --bg-navbar: rgba(248, 249, 250, 0.98);
+  --bg-mobile-menu: rgba(248, 249, 250, 0.97);
+  --hero-grid-color: rgba(0, 0, 0, 0.05);
+  --hero-bg-opacity: 0.15;
+  --hero-bg-blend-mode: multiply;
+  --hero-bg-filter: grayscale(10%) contrast(1.1);
+  --logo-text: #0f172a;
+  --logo-tagline: #4f46e5;
+
+  --font-sans: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+:root[data-theme="dark"] {
+  --bg-dark: #0a0a0c;
+  --bg-dark-secondary: #070709;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0ab;
+  --accent-blue: #00f0ff;
+  --accent-purple: #8a2be2;
+  --bg-navbar: rgba(10, 10, 12, 0.98);
+  --bg-mobile-menu: rgba(10, 10, 12, 0.97);
+  --hero-bg-opacity: 0.12;
+  --hero-bg-blend-mode: normal;
+  --hero-bg-filter: grayscale(80%) brightness(0.6) contrast(1.2);
+  --hero-grid-color: rgba(255, 255, 255, 0.07);
+  --logo-text: #F0F4FF;
+  --logo-tagline: #6366F1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+}
+
+.text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Responsive Utilities --- */
+
+@media (max-width: 1024px) {
+  .section-padding {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Dynamic vertical padding for smaller screens - compressed */
+  .section-padding {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Force side-by-side flex/grid children to stack vertically, tighter gap */
+  .mobile-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Ensure text blocks center horizontally */
+  .mobile-text-center {
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  /* Reduce massive gaps in grids aggressively */
+  .mobile-gap-reduce {
+    gap: 1rem !important;
+  }
+
+  /* Ensure forms and containers don't overflow */
+  .mobile-container-fluid {
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Reduce panel inner padding */
+  .glass-panel {
+    padding: 1.5rem !important;
+  }
+
+  /* Make standard buttons full width on mobile */
+  .mobile-btn-full {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Tyopgraphy compression */
+  h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  h2 {
+    font-size: 0.85rem !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  p {
+    line-height: 1.45 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Fix vertical centering pushing Hero down on mobile */
+  .hero-mobile-fix {
+    min-height: auto !important;
+    padding-top: 10rem !important;
+    padding-bottom: 5rem !important;
+    align-items: flex-start !important;
+  }
+
+  /* Horizontal Scroll Carousel for Mobile */
+  .mobile-horizontal-scroll {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE/Edge */
+    gap: 1.5rem !important;
+    /* Negative margins to allow cards to bleed to the edge of the screen */
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+    /* Padding to align the first/last card with the rest of the layout */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .mobile-horizontal-scroll::-webkit-scrollbar {
+    display: none !important;
+    /* Chrome/Safari/Opera */
+  }
+
+  /* Target the direct children (the cards) */
+  .mobile-horizontal-scroll>div {
+    flex: 0 0 85% !important;
+    /* ~85% width to allow next card vertical preview */
+    scroll-snap-align: start !important;
+    max-width: 85% !important;
+  }
+}
+
+/* Hide dots on desktop */
+@media (min-width: 769px) {
+  .mobile-dots {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .pricing-features-list {
+    display: none !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 9vw, 2.5rem) !important;
+  }
+}
+
+/* =========================================
+   SMOOTH SCROLL
+   ========================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-purple);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-purple) var(--bg-dark);
+}
+
+/* =========================================
+   SECTION BASE
+   ========================================= */
+
+.section {
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 8rem clamp(1.5rem, 5vw, 6.5rem);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem clamp(1rem, 4vw, 1.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2.5rem 1rem;
+  }
+}
+
+/* =========================================
+   SUBPAGE LAYOUT SYSTEM
+   ========================================= */
+
+.subpage-layout {
+  padding-top: 140px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .subpage-layout {
+    padding-top: 100px;
+  }
+}
+
+.subpage-section {
+  padding: 0 clamp(1.5rem, 5vw, 6.5rem) 8rem !important;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .subpage-section {
+    padding: 0 clamp(1rem, 4vw, 1.5rem) 4rem !important;
+  }
+}
+
+/* =========================================
+   SECTION HEADER
+   ========================================= */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header__subtitle {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+}
+
+.section-header__title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.section-header__desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* =========================================
+   KEYFRAME ANIMATIONS
+   ========================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.45), 0 0 60px rgba(138, 43, 226, 0.2);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   ANIMATION UTILITIES
+   ========================================= */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================
+   LINK HOVER UNDERLINE
+   ========================================= */
+
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-gradient);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* =========================================
+   IMAGE HOVER ZOOM
+   ========================================= */
+
+.img-zoom {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img-zoom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.06);
+}

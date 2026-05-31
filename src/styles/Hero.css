@@ -1,0 +1,312 @@
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 8rem clamp(1.5rem, 5vw, 6.5rem) 4rem;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, var(--bg-dark) 85%);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* ----- Background Image ----- */
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: var(--hero-bg-opacity, 0.35);
+  filter: var(--hero-bg-filter, grayscale(100%));
+  mix-blend-mode: var(--hero-bg-blend-mode, normal);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ----- Animated Grid Pattern Overlay ----- */
+
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--hero-grid-color) 0px,
+      var(--hero-grid-color) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--hero-grid-color) 0px,
+      var(--hero-grid-color) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  animation: heroGridPulse 6s ease-in-out infinite;
+}
+
+@keyframes heroGridPulse {
+  0%, 100% {
+    opacity: 0.04;
+  }
+  50% {
+    opacity: 0.08;
+  }
+}
+
+/* ----- Content Container ----- */
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ----- Badge ----- */
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--accent-blue);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  background: rgba(0, 240, 255, 0.06);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.15),
+    transparent
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: shimmer 2s linear infinite;
+}
+
+.hero__badge:hover::before {
+  opacity: 1;
+}
+
+.hero__badge:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+/* ----- Title ----- */
+
+.hero__title {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* ----- Subtitle ----- */
+
+.hero__subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  text-shadow: 0 1px 4px var(--bg-dark);
+}
+
+/* ----- CTA Group ----- */
+
+.hero__cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Primary CTA - Gradient */
+
+.hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.hero__cta-primary:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 30px rgba(0, 240, 255, 0.3),
+    0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+.hero__cta-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Secondary CTA - Glass Outline */
+
+.hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.hero__cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.hero__cta-secondary:active {
+  transform: translateY(0);
+}
+
+/* ----- Trust Badges ----- */
+
+.hero__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+
+.hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.hero__trust-icon {
+  color: var(--accent-blue);
+  font-size: 1rem;
+}
+
+/* =========================================
+   RESPONSIVE - TABLET (768px)
+   ========================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 4.5rem 1.5rem 3.5rem;
+    align-items: flex-start;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__cta-primary,
+  .hero__cta-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__trust {
+    gap: 1.25rem;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - MOBILE (480px)
+   ========================================= */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 1rem 2.5rem;
+  }
+
+  .hero__badge {
+    font-size: 0.7rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    letter-spacing: -0.01em;
+  }
+
+  .hero__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero__trust {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

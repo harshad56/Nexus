@@ -1,0 +1,137 @@
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Globe, Smartphone, PenTool, Database, ShieldCheck } from 'lucide-react';
+import '../styles/Services.css';
+
+const services = [
+  {
+    icon: <Globe size={24} />,
+    title: 'Web Development',
+    desc: 'Custom-built websites, complex SaaS platforms, and high-converting E-commerce solutions engineered for speed and scale.',
+    stack: ['React', 'Node.js', 'Next.js', 'Spring Boot'],
+    price: 'Starting ₹35,000',
+    glowColor: 'rgba(0, 240, 255, 0.15)'
+  },
+  {
+    icon: <Smartphone size={24} />,
+    title: 'Mobile App Development',
+    desc: 'High-performance, native iOS and Android applications built using cross-platform technology for faster time-to-market.',
+    stack: ['React Native', 'Flutter', 'Firebase'],
+    price: 'Starting ₹80,000',
+    glowColor: 'rgba(138, 43, 226, 0.15)'
+  },
+  {
+    icon: <PenTool size={24} />,
+    title: 'UI/UX Design',
+    desc: 'Data-driven, user-centric interface design that not only looks stunning but maximizes conversion rates and user retention.',
+    stack: ['Figma', 'CSS3', 'Framer Motion'],
+    price: 'Custom Quote',
+    glowColor: 'rgba(255, 0, 127, 0.12)'
+  },
+  {
+    icon: <Database size={24} />,
+    title: 'API & Backend Dev',
+    desc: 'Secure, scalable, and robust server-side architectures designed to handle complex business logic and high traffic loads.',
+    stack: ['Java', 'Spring Boot', 'Express', 'PostgreSQL'],
+    price: 'Custom Quote',
+    glowColor: 'rgba(0, 255, 127, 0.12)'
+  },
+  {
+    icon: <ShieldCheck size={24} />,
+    title: 'Maintenance & Support',
+    desc: 'Continuous monitoring, bug fixing, performance optimization, and regular updates to ensure your product runs flawlessly.',
+    stack: ['AWS', 'Vercel', 'CI/CD', 'Docker'],
+    price: 'Retainer Plans',
+    glowColor: 'rgba(255, 215, 0, 0.12)'
+  }
+];
+
+export default function Services() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollPosition = scrollRef.current.scrollLeft;
+    const totalWidth = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    const maxIndex = services.length - 1;
+
+    let index = 0;
+    if (totalWidth > 0) {
+      index = Math.round((scrollPosition / totalWidth) * maxIndex);
+    }
+    setActiveIndex(Math.min(Math.max(index, 0), maxIndex));
+  };
+
+  return (
+    <section id="services" className="services section">
+      <div className="gradient-sphere" style={{ top: '20%', right: '-20%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(138,43,226,0.08) 0%, transparent 70%)', position: 'absolute', pointerEvents: 'none' }}></div>
+
+      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+        <div className="section-header">
+          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Our Services</h2>
+          <h3 className="section-header__title">Comprehensive Engineering For Your Digital Growth</h3>
+          <p className="section-header__desc">
+            We don't do basic WordPress setups. We engineer custom React architectures, robust Node.js backend systems, and native mobile experiences that give your startup an unfair advantage.
+          </p>
+        </div>
+
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="services__grid"
+        >
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              className={`services__card ${index === 0 ? 'services__card--featured' : ''}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              style={{ '--card-glow': service.glowColor }}
+            >
+              <div className="services__icon">
+                {service.icon}
+              </div>
+              <h4 className="services__title">{service.title}</h4>
+              <p className="services__desc">
+                {service.desc}
+              </p>
+
+              <div className="services__meta">
+                <div className="services__tech-stack">
+                  {service.stack.map((tech, i) => (
+                    <span key={i} className="services__tech-tag">{tech}</span>
+                  ))}
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.4rem', marginTop: '0.5rem' }}>
+                  <span className="services__price">{service.price}</span>
+                  <a href="#contact" className="text-gradient" style={{ fontWeight: 'bold', fontSize: '0.9rem', textDecoration: 'none' }}>Inquire →</a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile scroll indicator dots */}
+        <div className="mobile-dots">
+          {services.map((_, idx) => (
+            <div 
+              key={idx} 
+              className={`mobile-dot ${idx === activeIndex ? 'mobile-dot--active' : ''}`}
+              style={{
+                width: idx === activeIndex ? '24px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: idx === activeIndex ? 'var(--accent-blue)' : 'var(--border-light)',
+                transition: 'all 0.3s ease',
+                margin: '0 4px'
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

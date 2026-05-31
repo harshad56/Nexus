@@ -1,0 +1,243 @@
+/* =========================================
+   PORTFOLIO SECTION
+   ========================================= */
+
+.portfolio {
+  position: relative;
+}
+
+/* ----- Showcase Container ----- */
+
+.portfolio__showcase {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* ----- Mockup Wrapper ----- */
+
+.portfolio__mockup-wrapper {
+  perspective: 1200px;
+}
+
+.portfolio__mockup {
+  border-radius: 16px;
+  overflow: hidden;
+  transform: rotateY(-4deg) rotateX(2deg);
+  transition: transform 0.5s ease;
+  animation: float 4s ease-in-out infinite;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 240, 255, 0.06);
+}
+
+.portfolio__mockup:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
+.portfolio__mockup img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+/* ----- Details Section ----- */
+
+.portfolio__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ----- Badge ----- */
+
+.portfolio__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 9999px;
+}
+
+/* ----- Title ----- */
+
+.portfolio__title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----- Description ----- */
+
+.portfolio__desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ----- Tech Tags ----- */
+
+.portfolio__tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.portfolio__tech-tag {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.portfolio__tech-tag:hover {
+  color: var(--accent-blue);
+  border-color: rgba(0, 240, 255, 0.25);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+/* ----- Impact List ----- */
+
+.portfolio__impact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.portfolio__impact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.portfolio__impact-item::before {
+  content: '→';
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ----- Live Link Button ----- */
+
+.portfolio__live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.portfolio__live-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+}
+
+/* ----- Navigation Dots ----- */
+
+.portfolio__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.portfolio__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  opacity: 0.35;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.portfolio__dot--active {
+  background: var(--accent-blue);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  transform: scale(1.2);
+}
+/* ----- All Projects Button ----- */
+
+.portfolio__all-btn-wrapper {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.portfolio__all-btn {
+  display: inline-flex;
+  padding: 1rem 3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 30px;
+  color: var(--text-primary);
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.portfolio__all-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .portfolio__showcase {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .portfolio__mockup {
+    transform: rotateY(0) rotateX(0);
+  }
+
+  .portfolio__mockup-wrapper {
+    perspective: none;
+  }
+}

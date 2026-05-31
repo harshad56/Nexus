@@ -1,0 +1,179 @@
+/* =========================================
+   CTA SECTION
+   ========================================= */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* ----- Background Image ----- */
+
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ----- Content ----- */
+
+.cta__content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ----- Title ----- */
+
+.cta__title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----- Text ----- */
+
+.cta__text {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 550px;
+  line-height: 1.7;
+}
+
+/* ----- Button ----- */
+
+.cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.cta__button:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 35px rgba(0, 240, 255, 0.35),
+    0 5px 20px rgba(138, 43, 226, 0.25);
+  animation: none;
+}
+
+.cta__button:active {
+  transform: translateY(-1px);
+}
+
+/* ----- Floating Shapes Container ----- */
+
+.cta__shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ----- Individual Shape ----- */
+
+.cta__shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.06;
+  animation: float 5s ease-in-out infinite;
+}
+
+.cta__shape:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  background: var(--accent-blue);
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.cta__shape:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  background: var(--accent-purple);
+  top: 60%;
+  right: 8%;
+  animation-delay: 1.5s;
+  animation-duration: 6s;
+}
+
+.cta__shape:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background: var(--accent-blue);
+  bottom: 15%;
+  left: 20%;
+  animation-delay: 3s;
+  animation-duration: 4.5s;
+}
+
+.cta__shape:nth-child(4) {
+  width: 80px;
+  height: 80px;
+  background: var(--accent-purple);
+  top: 20%;
+  right: 25%;
+  animation-delay: 2s;
+  animation-duration: 5.5s;
+}
+
+.cta__shape:nth-child(5) {
+  width: 120px;
+  height: 120px;
+  background: var(--accent-blue);
+  bottom: 30%;
+  right: 40%;
+  animation-delay: 0.8s;
+  animation-duration: 6.5s;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .cta__title {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+  }
+
+  .cta__text {
+    font-size: 0.95rem;
+  }
+
+  .cta__button {
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .cta__shape {
+    display: none;
+  }
+}

@@ -1,0 +1,207 @@
+/* =========================================
+   PROCESS SECTION
+   ========================================= */
+
+.process {
+  position: relative;
+}
+
+/* ----- Timeline Container ----- */
+
+.process__timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* ----- Central Vertical Line ----- */
+
+.process__line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: var(--accent-gradient);
+  opacity: 0.25;
+  border-radius: 1px;
+  transform-origin: top;
+}
+
+.process__line--animated {
+  animation: lineGrow 1.5s ease forwards;
+}
+
+@keyframes lineGrow {
+  from {
+    transform: translateX(-50%) scaleY(0);
+  }
+  to {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+/* ----- Step ----- */
+
+.process__step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  width: 50%;
+}
+
+.process__step:last-child {
+  margin-bottom: 0;
+}
+
+/* Odd steps — left side */
+.process__step:nth-child(odd) {
+  margin-left: 0;
+  padding-right: 3rem;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+/* Even steps — right side */
+.process__step:nth-child(even) {
+  margin-left: 50%;
+  padding-left: 3rem;
+  text-align: left;
+}
+
+/* ----- Step Number Badge ----- */
+
+.process__step-number {
+  position: absolute;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-dark);
+  z-index: 2;
+}
+
+/* Gradient border ring */
+.process__step-number::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  z-index: -1;
+}
+
+.process__step:nth-child(odd) .process__step-number {
+  right: -24px;
+}
+
+.process__step:nth-child(even) .process__step-number {
+  left: -24px;
+}
+
+/* ----- Step Icon ----- */
+
+.process__step-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* ----- Step Content ----- */
+
+.process__step-content {
+  flex: 1;
+}
+
+.process__step-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.process__step-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ----- Connector (horizontal line) ----- */
+
+.process__connector {
+  position: absolute;
+  top: 22px;
+  width: 3rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.process__step:nth-child(odd) .process__connector {
+  right: 0;
+}
+
+.process__step:nth-child(even) .process__connector {
+  left: 0;
+}
+
+/* =========================================
+   RESPONSIVE - TABLET (768px)
+   ========================================= */
+
+@media (max-width: 768px) {
+  .process__line {
+    left: 20px;
+    transform: translateX(0);
+  }
+
+  .process__line--animated {
+    animation: lineGrowMobile 1.5s ease forwards;
+  }
+
+  @keyframes lineGrowMobile {
+    from {
+      transform: translateX(0) scaleY(0);
+    }
+    to {
+      transform: translateX(0) scaleY(1);
+    }
+  }
+
+  .process__step {
+    width: 100%;
+    margin-left: 0 !important;
+    padding-left: 4rem !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+    flex-direction: row !important;
+  }
+
+  .process__step-number {
+    left: -4px !important;
+    right: auto !important;
+    width: 40px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+
+  .process__connector {
+    display: none;
+  }
+}
