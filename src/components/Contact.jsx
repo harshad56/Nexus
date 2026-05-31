@@ -79,7 +79,7 @@ export default function Contact() {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    placeholder="John"
+                    placeholder="Enter name"
                     required
                     className="contact__input"
                   />
@@ -91,7 +91,7 @@ export default function Contact() {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    placeholder="Doe"
+                    placeholder="Enter last name"
                     required
                     className="contact__input"
                   />
@@ -105,7 +105,7 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="john@example.com"
+                  placeholder="email"
                   required
                   className="contact__input"
                 />
