@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Coins, Clock, Code, HeadphonesIcon, TrendingUp } from 'lucide-react';
 import '../styles/WhyChooseUs.css';
@@ -13,6 +13,22 @@ const benefits = [
 ];
 
 export default function WhyChooseUs() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollPosition = scrollRef.current.scrollLeft;
+    const totalWidth = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    const maxIndex = benefits.length - 1;
+
+    let index = 0;
+    if (totalWidth > 0) {
+      index = Math.round((scrollPosition / totalWidth) * maxIndex);
+    }
+    setActiveIndex(Math.min(Math.max(index, 0), maxIndex));
+  };
+
   return (
     <section className="why-us section" style={{ borderTop: '1px solid var(--border-light)' }}>
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -21,7 +37,11 @@ export default function WhyChooseUs() {
           <h3 className="section-header__title">Why Top Startups Partner With Us</h3>
         </div>
 
-        <div className="why-us__grid">
+        <div 
+          className="why-us__grid"
+          ref={scrollRef}
+          onScroll={handleScroll}
+        >
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -40,6 +60,16 @@ export default function WhyChooseUs() {
                 <p className="why-us__text">{benefit.desc}</p>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile scroll indicator dots */}
+        <div className="mobile-dots">
+          {benefits.map((_, idx) => (
+            <div 
+              key={idx} 
+              className={`mobile-dot ${idx === activeIndex ? 'mobile-dot--active' : ''}`}
+            />
           ))}
         </div>
       </div>

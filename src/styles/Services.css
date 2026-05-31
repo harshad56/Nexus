@@ -158,14 +158,28 @@
 
 @media (max-width: 768px) {
   .services__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 2rem 1.5rem; /* bottom padding for shadow drop */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .services__grid::-webkit-scrollbar {
+    display: none;
   }
 
   .services__grid > *:first-child {
-    grid-column: span 1;
+    grid-column: auto;
   }
 
   .services__card {
+    min-width: 85vw;
+    scroll-snap-align: center;
     padding: 1.5rem;
+    flex-shrink: 0;
   }
 }

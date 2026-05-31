@@ -88,10 +88,24 @@
 
 @media (max-width: 768px) {
   .why-us__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 2rem 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .why-us__grid::-webkit-scrollbar {
+    display: none;
   }
 
   .why-us__card {
+    min-width: 85vw;
+    scroll-snap-align: center;
+    flex-shrink: 0;
     padding: 1.75rem;
   }
 }

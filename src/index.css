@@ -158,6 +158,34 @@ button {
   100% { transform: translate(0, 0) scale(1); }
 }
 
+/* --- Mobile Carousel Indicators --- */
+.mobile-dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.mobile-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.mobile-dot--active {
+  width: 24px;
+  background: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+  .mobile-dots {
+    display: flex;
+  }
+}
+
 /* --- Responsive Utilities --- */
 
 @media (max-width: 1024px) {

@@ -217,11 +217,28 @@
   }
 
   .insights__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 2rem 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .insights__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .insights__card {
+    min-width: 85vw;
+    scroll-snap-align: center;
+    flex-shrink: 0;
   }
 
   .insights__card--featured {
-    grid-column: span 1;
+    grid-column: auto;
     grid-template-columns: 1fr;
   }
 

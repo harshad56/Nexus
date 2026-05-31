@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,22 @@ const insights = [
 ];
 
 export default function Insights() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollPosition = scrollRef.current.scrollLeft;
+    const totalWidth = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    const maxIndex = insights.length - 1;
+
+    let index = 0;
+    if (totalWidth > 0) {
+      index = Math.round((scrollPosition / totalWidth) * maxIndex);
+    }
+    setActiveIndex(Math.min(Math.max(index, 0), maxIndex));
+  };
+
   return (
     <section id="insights" className="insights section" style={{ borderTop: '1px solid var(--border-light)' }}>
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -50,7 +66,11 @@ export default function Insights() {
           </Link>
         </div>
 
-        <div className="insights__grid">
+        <div 
+          className="insights__grid"
+          ref={scrollRef}
+          onScroll={handleScroll}
+        >
           {insights.map((post, index) => {
             const isFeatured = index === 0;
             return (
@@ -88,6 +108,17 @@ export default function Insights() {
             );
           })}
         </div>
+
+        {/* Mobile scroll indicator dots */}
+        <div className="mobile-dots">
+          {insights.map((_, idx) => (
+            <div 
+              key={idx} 
+              className={`mobile-dot ${idx === activeIndex ? 'mobile-dot--active' : ''}`}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );
