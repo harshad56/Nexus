@@ -401,7 +401,7 @@ html {
 
 @media (max-width: 768px) {
   .subpage-layout {
-    padding-top: 100px;
+    padding-top: 2rem;
   }
 }
 
