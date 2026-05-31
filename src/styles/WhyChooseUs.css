@@ -103,7 +103,7 @@
   }
 
   .why-us__card {
-    min-width: 85vw;
+    min-width: 100%;
     scroll-snap-align: center;
     flex-shrink: 0;
     padding: 1.75rem;

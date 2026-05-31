@@ -232,7 +232,7 @@
   }
 
   .insights__card {
-    min-width: 85vw;
+    min-width: 100%;
     scroll-snap-align: center;
     flex-shrink: 0;
   }

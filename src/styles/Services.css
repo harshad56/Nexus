@@ -177,7 +177,7 @@
   }
 
   .services__card {
-    min-width: 85vw;
+    min-width: 100%;
     scroll-snap-align: center;
     padding: 1.5rem;
     flex-shrink: 0;
