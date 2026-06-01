@@ -17,8 +17,8 @@
   box-shadow: var(--shadow-card);
   padding: 3rem;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 3.5rem;
   align-items: center;
 }
 
@@ -31,7 +31,7 @@
 .portfolio__mockup {
   border-radius: 16px;
   overflow: hidden;
-  transform: rotateY(-4deg) rotateX(2deg);
+  transform: rotateY(-4deg) rotateX(2deg) scale(1.1);
   transition: transform 0.5s ease;
   animation: float 4s ease-in-out infinite;
   box-shadow:
@@ -40,7 +40,7 @@
 }
 
 .portfolio__mockup:hover {
-  transform: rotateY(0deg) rotateX(0deg);
+  transform: rotateY(0deg) rotateX(0deg) scale(1.14);
 }
 
 .portfolio__mockup img {
