@@ -37,7 +37,11 @@ const steps = [
 ];
 
 export default function Process() {
-  const { scrollYProgress } = useScroll();
+  const targetRef = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start center", "end center"]
+  });
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -52,7 +56,7 @@ export default function Process() {
           <h3 className="section-header__title">Strategic Execution For Every Project</h3>
         </div>
 
-        <div className="process__timeline">
+        <div ref={targetRef} className="process__timeline">
           {/* Vertical central line base */}
           <div className="process__line-base"></div>
           

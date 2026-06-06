@@ -8,7 +8,7 @@ const plans = [
     name: 'Starter Website',
     price: '₹15,000',
     desc: 'Perfect for local businesses looking to establish a professional digital footprint.',
-    features: ['Up to 5 Pages', 'Mobile Responsive Layout', 'Contact Form Integration', 'Basic SEO Setup', '1 Month Free Support'],
+    features: ['Up to 5 Pages1', 'Mobile Responsive Layout', 'Contact Form Integration', 'Basic SEO Setup', '1 Month Free Support'],
     recommended: false
   },
   {
