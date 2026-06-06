@@ -1,48 +1,48 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Smartphone, PenTool, Database, ShieldCheck } from 'lucide-react';
+import { Globe, Smartphone, PenTool, Database, ShieldCheck, ArrowRight } from 'lucide-react';
 import '../styles/Services.css';
 
 const services = [
   {
-    icon: <Globe size={24} />,
+    icon: <Globe size={28} />,
     title: 'Web Development',
     desc: 'Custom-built websites, complex SaaS platforms, and high-converting E-commerce solutions engineered for speed and scale.',
     stack: ['React', 'Node.js', 'Next.js', 'Spring Boot'],
     price: 'Starting ₹35,000',
-    glowColor: 'rgba(0, 240, 255, 0.15)'
+    glowColor: 'rgba(0, 240, 255, 0.4)'
   },
   {
-    icon: <Smartphone size={24} />,
+    icon: <Smartphone size={28} />,
     title: 'Mobile App Development',
     desc: 'High-performance, native iOS and Android applications built using cross-platform technology for faster time-to-market.',
     stack: ['React Native', 'Flutter', 'Firebase'],
     price: 'Starting ₹80,000',
-    glowColor: 'rgba(138, 43, 226, 0.15)'
+    glowColor: 'rgba(138, 43, 226, 0.4)'
   },
   {
-    icon: <PenTool size={24} />,
+    icon: <PenTool size={28} />,
     title: 'UI/UX Design',
     desc: 'Data-driven, user-centric interface design that not only looks stunning but maximizes conversion rates and user retention.',
     stack: ['Figma', 'CSS3', 'Framer Motion'],
     price: 'Custom Quote',
-    glowColor: 'rgba(255, 0, 127, 0.12)'
+    glowColor: 'rgba(255, 0, 127, 0.3)'
   },
   {
-    icon: <Database size={24} />,
+    icon: <Database size={28} />,
     title: 'API & Backend Dev',
     desc: 'Secure, scalable, and robust server-side architectures designed to handle complex business logic and high traffic loads.',
     stack: ['Java', 'Spring Boot', 'Express', 'PostgreSQL'],
     price: 'Custom Quote',
-    glowColor: 'rgba(0, 255, 127, 0.12)'
+    glowColor: 'rgba(0, 255, 127, 0.3)'
   },
   {
-    icon: <ShieldCheck size={24} />,
+    icon: <ShieldCheck size={28} />,
     title: 'Maintenance & Support',
     desc: 'Continuous monitoring, bug fixing, performance optimization, and regular updates to ensure your product runs flawlessly.',
     stack: ['AWS', 'Vercel', 'CI/CD', 'Docker'],
     price: 'Retainer Plans',
-    glowColor: 'rgba(255, 215, 0, 0.12)'
+    glowColor: 'rgba(255, 215, 0, 0.3)'
   }
 ];
 
@@ -107,7 +107,9 @@ export default function Services() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.4rem', marginTop: '0.5rem' }}>
                   <span className="services__price">{service.price}</span>
-                  <a href="#contact" className="text-gradient" style={{ fontWeight: 'bold', fontSize: '0.9rem', textDecoration: 'none' }}>Inquire →</a>
+                  <a href="#contact" className="text-gradient services__inquire-link">
+                    Inquire <ArrowRight size={16} className="services__inquire-arrow" />
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -120,14 +122,6 @@ export default function Services() {
             <div 
               key={idx} 
               className={`mobile-dot ${idx === activeIndex ? 'mobile-dot--active' : ''}`}
-              style={{
-                width: idx === activeIndex ? '24px' : '8px',
-                height: '8px',
-                borderRadius: '4px',
-                background: idx === activeIndex ? 'var(--accent-blue)' : 'var(--border-light)',
-                transition: 'all 0.3s ease',
-                margin: '0 4px'
-              }}
             />
           ))}
         </div>

@@ -1,10 +1,33 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ExternalLink, CheckCircle2 } from 'lucide-react';
 import portfolioMockup from '../assets/images/portfolio-codeacademix.png';
 import '../styles/Portfolio.css';
 
 export default function Portfolio() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-100, 100], [5, -5]);
+  const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = (mouseX / width - 0.5) * 200;
+    const yPct = (mouseY / height - 0.5) * 200;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <section id="portfolio" className="portfolio section">
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -21,10 +44,25 @@ export default function Portfolio() {
           className="portfolio__showcase"
         >
           {/* Left Side: Mockup Image */}
-          <div className="portfolio__mockup-wrapper">
-            <div className="portfolio__mockup">
+          <div 
+            className="portfolio__mockup-wrapper"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ perspective: 1200 }}
+          >
+            <motion.div 
+              className="portfolio__mockup"
+              style={{ rotateX, rotateY, x, y }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            >
+              <div className="portfolio__browser-chrome">
+                <div className="portfolio__browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div className="portfolio__browser-url">app.codeacademix.com</div>
+              </div>
               <img src={portfolioMockup} alt="CodeAcademix E-learning Platform Mockup" />
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Side: Details */}
@@ -72,13 +110,13 @@ export default function Portfolio() {
               <h5 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem', fontWeight: '600' }}>Business Impact</h5>
               <ul className="portfolio__impact-list" style={{ padding: 0, margin: 0 }}>
                 <li className="portfolio__impact-item">
-                  Capable of handling 10,000+ concurrent users without performance degradation.
+                  <span className="portfolio__impact-pill">10K+</span> Concurrent users without performance degradation.
                 </li>
                 <li className="portfolio__impact-item">
-                  Reduced instructor grading time by 85% through AI automation.
+                  <span className="portfolio__impact-pill">85%</span> Reduced instructor grading time via AI automation.
                 </li>
                 <li className="portfolio__impact-item">
-                  Sub-second page load times ensuring high student retention.
+                  <span className="portfolio__impact-pill">&lt;1s</span> Sub-second page load times ensuring high retention.
                 </li>
               </ul>
             </div>

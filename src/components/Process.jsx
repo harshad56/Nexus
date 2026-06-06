@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Search, PenTool, Braces, TestTube, Rocket } from 'lucide-react';
 import '../styles/Process.css';
 
@@ -7,31 +7,43 @@ const steps = [
   {
     icon: <Search size={20} />,
     title: 'Discovery & Planning',
-    desc: 'We analyze your business goals, target audience, and technical specs to formulate a foolproof strategic roadmap.'
+    desc: 'We analyze your business goals, target audience, and technical specs to formulate a foolproof strategic roadmap.',
+    duration: '~1 Week'
   },
   {
     icon: <PenTool size={20} />,
     title: 'UI/UX Design',
-    desc: 'Creating high-fidelity wireframes and interactive prototypes that prioritize user experience and conversion optimization.'
+    desc: 'Creating high-fidelity wireframes and interactive prototypes that prioritize user experience and conversion optimization.',
+    duration: '~2 Weeks'
   },
   {
     icon: <Braces size={20} />,
     title: 'Agile Development',
-    desc: 'Writing clean, scalable, and secure code using modern frameworks, turning your vision into a functional reality.'
+    desc: 'Writing clean, scalable, and secure code using modern frameworks, turning your vision into a functional reality.',
+    duration: '~4-6 Weeks'
   },
   {
     icon: <TestTube size={20} />,
     title: 'QA & Testing',
-    desc: 'Rigorous multi-device testing, performance audits, and security checks to ensure a flawless launch.'
+    desc: 'Rigorous multi-device testing, performance audits, and security checks to ensure a flawless launch.',
+    duration: '~1 Week'
   },
   {
     icon: <Rocket size={20} />,
     title: 'Deployment & Support',
-    desc: 'Deploying your product to robust cloud servers and providing ongoing maintenance to guarantee 99.9% uptime.'
+    desc: 'Deploying your product to robust cloud servers and providing ongoing maintenance to guarantee 99.9% uptime.',
+    duration: 'Ongoing'
   }
 ];
 
 export default function Process() {
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <section id="process" className="process section">
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -41,13 +53,13 @@ export default function Process() {
         </div>
 
         <div className="process__timeline">
-          {/* Vertical central line */}
+          {/* Vertical central line base */}
+          <div className="process__line-base"></div>
+          
+          {/* Vertical central line active fill */}
           <motion.div 
-            className="process__line process__line--animated"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="process__line-active"
+            style={{ scaleY }}
           />
 
           {steps.map((step, index) => {
@@ -65,12 +77,17 @@ export default function Process() {
                 <div className="process__step-number">{stepStr}</div>
                 <div className="process__connector" />
                 
-                <div className="process__step-icon">
-                  {step.icon}
-                </div>
-                <div className="process__step-content">
-                  <h4 className="process__step-title">{step.title}</h4>
-                  <p className="process__step-desc">{step.desc}</p>
+                <div className="process__step-card">
+                  <div className="process__step-header">
+                    <div className="process__step-icon">
+                      {step.icon}
+                    </div>
+                    <span className="process__step-duration">{step.duration}</span>
+                  </div>
+                  <div className="process__step-content">
+                    <h4 className="process__step-title">{step.title}</h4>
+                    <p className="process__step-desc">{step.desc}</p>
+                  </div>
                 </div>
               </motion.div>
             );

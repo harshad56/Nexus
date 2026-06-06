@@ -17,30 +17,29 @@
 
 /* ----- Central Vertical Line ----- */
 
-.process__line {
+.process__line-base {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
   height: 100%;
-  background: var(--accent-gradient);
-  opacity: 0.25;
+  background: var(--border-light);
   border-radius: 1px;
+}
+
+.process__line-active {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: 2px;
   transform-origin: top;
-}
-
-.process__line--animated {
-  animation: lineGrow 1.5s ease forwards;
-}
-
-@keyframes lineGrow {
-  from {
-    transform: translateX(-50%) scaleY(0);
-  }
-  to {
-    transform: translateX(-50%) scaleY(1);
-  }
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  z-index: 1;
 }
 
 /* ----- Step ----- */
@@ -73,6 +72,65 @@
   text-align: left;
 }
 
+/* ----- Step Card ----- */
+
+.process__step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.process__step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-gradient);
+}
+
+.process__step:nth-child(odd) .process__step-card::before {
+  right: 0;
+}
+
+.process__step:nth-child(even) .process__step-card::before {
+  left: 0;
+}
+
+.process__step:hover .process__step-card {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ----- Step Header ----- */
+
+.process__step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.process__step:nth-child(odd) .process__step-header {
+  flex-direction: row-reverse;
+}
+
+.process__step-duration {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background: rgba(0, 240, 255, 0.08);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
 /* ----- Step Number Badge ----- */
 
 .process__step-number {
@@ -89,6 +147,7 @@
   color: var(--text-primary);
   background: var(--bg-dark);
   z-index: 2;
+  border: 2px solid var(--bg-dark);
 }
 
 /* Gradient border ring */
@@ -150,7 +209,7 @@
   top: 22px;
   width: 3rem;
   height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border-light);
 }
 
 .process__step:nth-child(odd) .process__connector {
@@ -166,22 +225,10 @@
    ========================================= */
 
 @media (max-width: 768px) {
-  .process__line {
+  .process__line-base,
+  .process__line-active {
     left: 20px;
     transform: translateX(0);
-  }
-
-  .process__line--animated {
-    animation: lineGrowMobile 1.5s ease forwards;
-  }
-
-  @keyframes lineGrowMobile {
-    from {
-      transform: translateX(0) scaleY(0);
-    }
-    to {
-      transform: translateX(0) scaleY(1);
-    }
   }
 
   .process__step {
@@ -190,6 +237,15 @@
     padding-left: 4rem !important;
     padding-right: 0 !important;
     text-align: left !important;
+    flex-direction: row !important;
+  }
+  
+  .process__step-card::before {
+    left: 0 !important;
+    right: auto !important;
+  }
+  
+  .process__step-header {
     flex-direction: row !important;
   }
 

@@ -1,0 +1,137 @@
+/* =========================================
+   TESTIMONIALS SECTION
+   ========================================= */
+
+.testimonials__carousel {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.testimonials__card {
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.testimonials__quote-icon {
+  color: var(--accent-blue);
+  opacity: 0.2;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials__text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials__stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: #eab308;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials__author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.testimonials__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.testimonials__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.testimonials__role {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+/* ----- Navigation ----- */
+
+.testimonials__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.testimonials__nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonials__nav-btn:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.testimonials__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.testimonials__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-light);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.testimonials__dot--active {
+  width: 24px;
+  background: var(--accent-blue);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .testimonials__card {
+    padding: 2rem 1.5rem;
+  }
+
+  .testimonials__text {
+    font-size: 1rem;
+  }
+}

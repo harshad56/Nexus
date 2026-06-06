@@ -68,7 +68,7 @@ export default function Pricing() {
               <div>
                 <span className="pricing__price-label">Starting at</span>
                 <div className="pricing__price">
-                  {plan.price}
+                  {plan.price} <span>/project</span>
                 </div>
               </div>
 
@@ -83,7 +83,7 @@ export default function Pricing() {
                 {plan.features.map((feature, i) => (
                   <li key={i} className="pricing__feature">
                     <span className="pricing__feature-check">
-                      <Check size={12} />
+                      <Check size={14} strokeWidth={3} />
                     </span>
                     {feature}
                   </li>

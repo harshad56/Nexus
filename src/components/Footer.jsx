@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Phone, Linkedin, Github, Instagram } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Github, Instagram, ArrowRight } from 'lucide-react';
 import Logo from './Logo';
 import '../styles/Footer.css';
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    // Simulate API call
+    alert(`Subscribed ${email} to the newsletter!`);
+    setEmail('');
+  };
+
   return (
     <footer className="footer">
       <div className="footer__grid">
@@ -57,6 +66,25 @@ export default function Footer() {
             <Phone size={16} className="footer__contact-icon" />
             <a href="tel:+919076450014">+91 90764 50014</a>
           </div>
+        </div>
+        
+        {/* Newsletter Section */}
+        <div className="footer__column">
+          <h3 className="footer__column-title">Stay Updated</h3>
+          <p className="footer__newsletter-desc">Subscribe to our newsletter for the latest tech insights, engineering articles, and agency updates.</p>
+          <form onSubmit={handleNewsletterSubmit} className="footer__newsletter-form">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+              className="footer__newsletter-input"
+            />
+            <button type="submit" className="footer__newsletter-btn">
+              <ArrowRight size={18} />
+            </button>
+          </form>
         </div>
       </div>
 

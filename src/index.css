@@ -1,3 +1,7 @@
+/* =========================================
+   DESIGN TOKENS — LIGHT (DEFAULT)
+   ========================================= */
+
 :root {
   --bg-dark: #f6f8fa;
   --bg-dark-secondary: #f0f2f5;
@@ -19,9 +23,15 @@
   --hero-bg-filter: grayscale(10%) contrast(1.1);
   --logo-text: #0f172a;
   --logo-tagline: #4f46e5;
+  --bg-recommended-card: #ffffff;
+  --bg-recommended-card-hover: #fafafa;
 
   --font-sans: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
 }
+
+/* =========================================
+   DESIGN TOKENS — DARK
+   ========================================= */
 
 :root[data-theme="dark"] {
   --bg-dark: #0a0a0c;
@@ -43,7 +53,27 @@
   --hero-grid-color: rgba(255, 255, 255, 0.07);
   --logo-text: #F0F4FF;
   --logo-tagline: #6366F1;
+  --bg-recommended-card: #0e0e12;
+  --bg-recommended-card-hover: #15151a;
 }
+
+/* Theme transition removed to prevent backdrop-filter layout thrashing (lag) */
+
+/* Exclude elements where transition causes layout jank */
+.hero__cta-primary,
+.hero__cta-secondary,
+.portfolio__live-link,
+.pricing__cta,
+.cta__button,
+.contact__submit,
+.navbar__cta,
+.navbar__mobile-cta {
+  transition: all 0.3s ease;
+}
+
+/* =========================================
+   RESET & BASE
+   ========================================= */
 
 * {
   box-sizing: border-box;
@@ -81,6 +111,25 @@ button {
   background: none;
 }
 
+/* =========================================
+   ACCESSIBILITY — FOCUS VISIBLE
+   ========================================= */
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =========================================
+   GLASS PANEL
+   ========================================= */
+
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(12px);
@@ -89,12 +138,20 @@ button {
   border-radius: 16px;
 }
 
+/* =========================================
+   TEXT GRADIENT
+   ========================================= */
+
 .text-gradient {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* =========================================
+   GRADIENT SPHERE — DECORATIVE BLOBS
+   ========================================= */
 
 .gradient-sphere {
   position: absolute;
@@ -105,7 +162,39 @@ button {
   pointer-events: none;
 }
 
-/* --- Animated Background Glow Blobs --- */
+/* =========================================
+   NOISE TEXTURE OVERLAY
+   ========================================= */
+
+.noise-texture {
+  position: relative;
+}
+
+.noise-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* =========================================
+   ANIMATED BACKGROUND GLOW BLOBS
+   ========================================= */
+
+:root {
+  --blob-blue: rgba(2, 132, 199, 0.35);
+  --blob-purple: rgba(124, 58, 237, 0.25);
+}
+
+:root[data-theme="dark"] {
+  --blob-blue: rgba(0, 240, 255, 0.12);
+  --blob-purple: rgba(138, 43, 226, 0.12);
+}
+
 .bg-glow-container {
   position: absolute;
   inset: 0;
@@ -117,13 +206,13 @@ button {
 .bg-glow-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.4;
+  filter: blur(120px);
   animation: blob-float 20s infinite alternate ease-in-out;
+  /* background-color transitions smoothly via global * selector */
 }
 
 .bg-glow-blob--blue {
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.4) 0%, transparent 70%);
+  background-color: var(--blob-blue);
   width: 60vw;
   height: 60vw;
   max-width: 800px;
@@ -132,12 +221,8 @@ button {
   left: -10%;
 }
 
-:root[data-theme="dark"] .bg-glow-blob--blue {
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
-}
-
 .bg-glow-blob--purple {
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+  background-color: var(--blob-purple);
   width: 50vw;
   height: 50vw;
   max-width: 600px;
@@ -147,10 +232,6 @@ button {
   animation-delay: -5s;
 }
 
-:root[data-theme="dark"] .bg-glow-blob--purple {
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
-}
-
 @keyframes blob-float {
   0% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(5%, 5%) scale(1.05); }
@@ -158,7 +239,10 @@ button {
   100% { transform: translate(0, 0) scale(1); }
 }
 
-/* --- Mobile Carousel Indicators --- */
+/* =========================================
+   MOBILE CAROUSEL INDICATORS
+   ========================================= */
+
 .mobile-dots {
   display: none;
   align-items: center;
@@ -186,7 +270,16 @@ button {
   }
 }
 
-/* --- Responsive Utilities --- */
+/* Hide dots on desktop */
+@media (min-width: 769px) {
+  .mobile-dots {
+    display: none !important;
+  }
+}
+
+/* =========================================
+   RESPONSIVE UTILITIES
+   ========================================= */
 
 @media (max-width: 1024px) {
   .section-padding {
@@ -196,8 +289,6 @@ button {
 }
 
 @media (max-width: 768px) {
-
-  /* Dynamic vertical padding for smaller screens - compressed */
   .section-padding {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
@@ -205,43 +296,37 @@ button {
     padding-right: 1rem !important;
   }
 
-  /* Force side-by-side flex/grid children to stack vertically, tighter gap */
   .mobile-stack {
     display: flex !important;
     flex-direction: column !important;
     gap: 1.25rem !important;
   }
 
-  /* Ensure text blocks center horizontally */
   .mobile-text-center {
     text-align: center !important;
     align-items: center !important;
   }
 
-  /* Reduce massive gaps in grids aggressively */
   .mobile-gap-reduce {
     gap: 1rem !important;
   }
 
-  /* Ensure forms and containers don't overflow */
   .mobile-container-fluid {
     width: 100% !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
 
-  /* Reduce panel inner padding */
   .glass-panel {
     padding: 1.5rem !important;
   }
 
-  /* Make standard buttons full width on mobile */
   .mobile-btn-full {
     width: 100% !important;
     justify-content: center !important;
   }
 
-  /* Tyopgraphy compression */
+  /* Typography compression */
   h1 {
     font-size: clamp(2.2rem, 8vw, 3rem) !important;
     line-height: 1.1 !important;
@@ -264,7 +349,6 @@ button {
     margin-bottom: 1rem !important;
   }
 
-  /* Fix vertical centering pushing Hero down on mobile */
   .hero-mobile-fix {
     min-height: auto !important;
     padding-top: 10rem !important;
@@ -280,14 +364,10 @@ button {
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
-    /* Firefox */
     -ms-overflow-style: none !important;
-    /* IE/Edge */
     gap: 1.5rem !important;
-    /* Negative margins to allow cards to bleed to the edge of the screen */
     margin-left: -1rem !important;
     margin-right: -1rem !important;
-    /* Padding to align the first/last card with the rest of the layout */
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     padding-bottom: 1rem !important;
@@ -295,22 +375,12 @@ button {
 
   .mobile-horizontal-scroll::-webkit-scrollbar {
     display: none !important;
-    /* Chrome/Safari/Opera */
   }
 
-  /* Target the direct children (the cards) */
   .mobile-horizontal-scroll>div {
     flex: 0 0 85% !important;
-    /* ~85% width to allow next card vertical preview */
     scroll-snap-align: start !important;
     max-width: 85% !important;
-  }
-}
-
-/* Hide dots on desktop */
-@media (min-width: 769px) {
-  .mobile-dots {
-    display: none !important;
   }
 }
 
@@ -372,19 +442,19 @@ html {
   max-width: 1500px;
   margin: 0 auto;
   width: 100%;
-  padding: 8rem clamp(1.5rem, 5vw, 6.5rem);
+  padding: 10rem clamp(1.5rem, 5vw, 6.5rem);
   position: relative;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem clamp(1rem, 4vw, 1.5rem);
+    padding: 4rem clamp(1rem, 4vw, 1.5rem);
   }
 }
 
 @media (max-width: 480px) {
   .section {
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem;
   }
 }
 
@@ -423,7 +493,7 @@ html {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 
 .section-header__subtitle {
@@ -512,6 +582,24 @@ html {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gradient-border-spin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
   }
 }
 

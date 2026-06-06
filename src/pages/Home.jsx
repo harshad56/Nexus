@@ -1,29 +1,25 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
+import TrustedBy from '../components/TrustedBy';
 import Services from '../components/Services';
-import Process from '../components/Process';
 import Portfolio from '../components/Portfolio';
-import FAQ from '../components/FAQ';
+import Process from '../components/Process';
+import Testimonials from '../components/Testimonials';
 import Pricing from '../components/Pricing';
-import WhyChooseUs from '../components/WhyChooseUs';
-import Insights from '../components/Insights';
-import CTASection from '../components/CTASection';
+import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 
 export default function Home() {
     return (
         <>
             <Hero />
-            <About />
+            <TrustedBy />
             <Services />
-            <Process />
             <Portfolio />
-            <FAQ />
+            <Process />
+            <Testimonials />
             <Pricing />
-            <WhyChooseUs />
-            <Insights />
-            <CTASection />
+            <FAQ />
             <Contact />
         </>
     );

@@ -148,6 +148,7 @@
 .navbar__link--active::after {
   transform: scaleX(1);
   transform-origin: left;
+  box-shadow: 0 0 8px var(--accent-blue);
 }
 
 /* ----- CTA Button ----- */

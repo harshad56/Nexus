@@ -10,88 +10,134 @@
 
 .contact__grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
 }
 
-/* ----- Form Container ----- */
+/* ----- Form Panel ----- */
 
 .contact__form {
-  padding: 2.5rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-light);
+  padding: 3rem;
   border-radius: 20px;
+}
+
+.contact__form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.contact__form-inner {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.contact__form-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-/* ----- Form Row ----- */
-
 .contact__form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-/* ----- Field ----- */
+/* ----- Floating Label Fields ----- */
 
 .contact__field {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
 }
-
-/* ----- Label ----- */
-
-.contact__label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* ----- Input ----- */
 
 .contact__input {
   width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 0.92rem;
-  font-family: inherit;
-  color: var(--text-primary);
+  padding: 1rem 1.25rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-light);
   border-radius: 12px;
-  outline: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
   transition: all 0.3s ease;
 }
 
-.contact__input::placeholder {
-  color: rgba(160, 160, 171, 0.5);
+.contact__textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .contact__input:focus {
+  outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08), 0 0 15px rgba(0, 240, 255, 0.06);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 240, 255, 0.02);
+  box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.05);
 }
 
-/* ----- Textarea ----- */
+/* Floating Label Styles */
+.contact__floating-label {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: transparent;
+}
 
-.contact__textarea {
-  min-height: 140px;
-  resize: vertical;
+.contact__input:focus ~ .contact__floating-label,
+.contact__field.has-value .contact__floating-label {
+  top: -0.65rem;
+  left: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background: var(--bg-dark); /* Using dark to cover border */
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+/* ----- Selection Pills ----- */
+
+.contact__selection-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact__selection-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contact__pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contact__pill {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact__pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.contact__pill--active {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
 }
 
 /* ----- Submit Button ----- */
@@ -102,9 +148,9 @@
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 1rem;
-  font-size: 0.95rem;
-  font-weight: 700;
+  padding: 1.15rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: #fff;
   background: var(--accent-gradient);
   border: none;
@@ -114,29 +160,29 @@
   margin-top: 0.5rem;
 }
 
-.contact__submit:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.25);
+.contact__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.3);
 }
 
-.contact__submit:active {
-  transform: translateY(-1px);
-}
-
-/* Loading state */
-.contact__submit--loading {
-  opacity: 0.6;
+.contact__submit:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
-/* Success state */
+.contact__submit--loading {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
 .contact__submit--success {
-  background: linear-gradient(135deg, #10b981, #059669);
-  animation: none;
+  background: rgba(39, 201, 63, 0.1);
+  color: #27c93f;
+  border: 1px solid rgba(39, 201, 63, 0.3);
 }
 
-/* ----- Info Column ----- */
+/* ----- Right Column Info ----- */
 
 .contact__info {
   display: flex;
@@ -144,118 +190,128 @@
   gap: 1.5rem;
 }
 
+.contact__info-card {
+  padding: 2.5rem;
+  border-radius: 20px;
+}
+
 .contact__info-title {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 700;
+  margin-bottom: 1rem;
   color: var(--text-primary);
 }
 
 .contact__info-text {
   font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
-/* ----- Info Items ----- */
+.contact__info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
 
 .contact__info-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
-  border-radius: 14px;
-  transition: all 0.3s ease;
-}
-
-.contact__info-item:hover {
-  background: var(--bg-card);
 }
 
 .contact__info-icon {
-  flex-shrink: 0;
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: rgba(0, 240, 255, 0.08);
+  background: rgba(0, 240, 255, 0.1);
   color: var(--accent-blue);
-  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .contact__info-label {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
 }
 
 .contact__info-value {
-  font-size: 0.95rem;
-  color: var(--text-primary);
+  font-size: 1.05rem;
   font-weight: 500;
-  margin-top: 0.15rem;
+  color: var(--text-primary);
 }
 
-/* ----- WhatsApp Button ----- */
+.contact__info-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact__info-value a:hover {
+  color: var(--accent-blue);
+}
 
 .contact__whatsapp {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.9rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  border: none;
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: rgba(39, 201, 63, 0.1);
+  border: 1px solid rgba(39, 201, 63, 0.3);
+  color: #27c93f;
   border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
   text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  width: fit-content;
 }
 
 .contact__whatsapp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.25);
+  background: rgba(39, 201, 63, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ----- Map ----- */
 
 .contact__map {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
+  height: 250px;
+  padding: 0; /* remove padding from glass-panel */
   border: 1px solid var(--border-light);
-  aspect-ratio: 16 / 9;
 }
 
 .contact__map iframe {
   width: 100%;
   height: 100%;
-  border: none;
-  display: block;
-  filter: grayscale(0.8) invert(0.92) contrast(0.85);
+  border: 0;
+  filter: invert(90%) hue-rotate(180deg) contrast(110%);
 }
 
 /* =========================================
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .contact__grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
+}
 
-  .contact__form {
-    padding: 1.5rem;
+@media (max-width: 768px) {
+  .contact__form, .contact__info-card {
+    padding: 2rem 1.5rem;
   }
 
   .contact__form-row {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
