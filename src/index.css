@@ -18,9 +18,10 @@
   --bg-navbar: rgba(246, 248, 250, 0.98);
   --bg-mobile-menu: rgba(246, 248, 250, 0.97);
   --hero-grid-color: rgba(0, 0, 0, 0.05);
-  --hero-bg-opacity: 0.15;
-  --hero-bg-blend-mode: multiply;
-  --hero-bg-filter: grayscale(10%) contrast(1.1);
+  --hero-bg-opacity: 0.6;
+  --hero-bg-blend-mode: normal;
+  --hero-bg-filter: contrast(1.05) saturate(1.05);
+  --hero-wash: rgba(246, 248, 250, 0.45);
   --logo-text: #0f172a;
   --logo-tagline: #4f46e5;
   --bg-recommended-card: #ffffff;
@@ -78,6 +79,7 @@
   --hero-bg-blend-mode: normal;
   --hero-bg-filter: grayscale(80%) brightness(0.6) contrast(1.2);
   --hero-grid-color: rgba(255, 255, 255, 0.07);
+  --hero-wash: rgba(10, 10, 12, 0.62);
   --logo-text: #F0F4FF;
   --logo-tagline: #6366F1;
   --bg-recommended-card: #0e0e12;

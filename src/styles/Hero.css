@@ -16,7 +16,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 20%, var(--bg-dark) 85%);
+  /* Uniform readability scrim + soft vignette so text never sits on the busy
+     part of the photo, while the image stays as a subtle branded texture. */
+  background:
+    radial-gradient(circle at center, transparent 55%, var(--bg-dark) 115%),
+    var(--hero-wash);
   z-index: 1;
   pointer-events: none;
   transition: background 0.3s ease;
@@ -138,6 +142,7 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
+  text-shadow: 0 2px 18px var(--bg-dark);
 }
 
 /* ----- Subtitle ----- */
@@ -163,7 +168,12 @@
 
 .hero__rotating-word {
   display: inline-block;
-  font-weight: 700;
+  font-weight: 800;
+  /* Solid high-contrast color so it never disappears against the hero image.
+     Overrides .text-gradient clipping which could render invisible. */
+  -webkit-text-fill-color: var(--accent-purple);
+  color: var(--accent-purple);
+  background: none;
 }
 
 /* ----- CTA Group ----- */
