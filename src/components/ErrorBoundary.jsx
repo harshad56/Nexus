@@ -23,9 +23,9 @@ export default class ErrorBoundary extends React.Component {
             <div className="notfound__code">
               <span className="notfound__0">!</span>
             </div>
-            <h1 className="notfound__title">Something Went Wrong</h1>
+            <h1 className="notfound__title">This Page Could Not Be Loaded</h1>
             <p className="notfound__desc">
-              An unexpected error occurred. Please try refreshing the page or navigating back to the homepage.
+              Something went wrong while loading this page. Please try again, or head back to the homepage.
             </p>
             <div className="notfound__actions">
               <a href="/" className="notfound__btn notfound__btn--primary">

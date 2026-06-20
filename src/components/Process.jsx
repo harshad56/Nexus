@@ -73,10 +73,11 @@ export default function Process() {
               <motion.div
                 key={index}
                 className="process__step"
+                data-reveal=""
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="process__step-number">{stepStr}</div>
                 <div className="process__connector" />

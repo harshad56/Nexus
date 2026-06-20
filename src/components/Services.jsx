@@ -85,10 +85,11 @@ export default function Services() {
             <motion.div
               key={index}
               className={`services__card ${index === 0 ? 'services__card--featured' : ''}`}
+              data-reveal=""
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{ '--card-glow': service.glowColor }}
             >
               <div className="services__icon">

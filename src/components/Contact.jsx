@@ -8,7 +8,7 @@ const projectTypes = ['Web App', 'Mobile App', 'SaaS Platform', 'E-Commerce', 'U
 const budgetRanges = ['₹15K – ₹50K', '₹50K – ₹1.5L', '₹1.5L – ₹5L', '₹5L+'];
 
 export default function Contact() {
-  const { formData, status, handleChange, handleSelectField, handleSubmit } = useContactForm();
+  const { formData, status, errors, handleChange, handleSelectField, handleSubmit } = useContactForm();
 
   return (
     <section id="contact" className="contact section">
@@ -21,35 +21,38 @@ export default function Contact() {
         <div className="contact__grid">
           {/* Left: Form */}
           <motion.div
+            data-reveal=""
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="contact__form glass-panel"
           >
             <h4 className="contact__form-title">Project Inquiry</h4>
 
             <form onSubmit={handleSubmit} className="contact__form-inner">
               <div className="contact__form-row">
-                <div className={`contact__field ${formData.firstName ? 'has-value' : ''}`}>
+                <div className={`contact__field ${formData.firstName ? 'has-value' : ''} ${errors.firstName ? 'has-error' : ''}`}>
                   <input
                     type="text"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
                     required
+                    aria-invalid={errors.firstName ? 'true' : 'false'}
                     className="contact__input"
                     id="contact-firstName"
                   />
                   <label htmlFor="contact-firstName" className="contact__floating-label">First Name *</label>
                 </div>
-                <div className={`contact__field ${formData.lastName ? 'has-value' : ''}`}>
+                <div className={`contact__field ${formData.lastName ? 'has-value' : ''} ${errors.lastName ? 'has-error' : ''}`}>
                   <input
                     type="text"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
                     required
+                    aria-invalid={errors.lastName ? 'true' : 'false'}
                     className="contact__input"
                     id="contact-lastName"
                   />
@@ -57,13 +60,14 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className={`contact__field ${formData.email ? 'has-value' : ''}`}>
+              <div className={`contact__field ${formData.email ? 'has-value' : ''} ${errors.email ? 'has-error' : ''}`}>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  aria-invalid={errors.email ? 'true' : 'false'}
                   className="contact__input"
                   id="contact-email"
                 />
@@ -116,11 +120,12 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className={`contact__field ${formData.details ? 'has-value' : ''}`}>
+              <div className={`contact__field ${formData.details ? 'has-value' : ''} ${errors.details ? 'has-error' : ''}`}>
                 <textarea
                   name="details"
                   value={formData.details}
                   onChange={handleChange}
+                  aria-invalid={errors.details ? 'true' : 'false'}
                   className="contact__input contact__textarea"
                   id="contact-details"
                 />
@@ -145,10 +150,11 @@ export default function Contact() {
 
           {/* Right: Contact Info */}
           <motion.div
+            data-reveal=""
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="contact__info"
           >
             <div className="contact__info-card glass-panel">

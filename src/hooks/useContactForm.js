@@ -16,9 +16,20 @@ export default function useContactForm(initialFields = {}) {
 
   const [formData, setFormData] = useState(defaultFields);
   const [status, setStatus] = useState('idle'); // idle | loading | success
+  const [errors, setErrors] = useState({}); // { fieldName: true } for empty required fields
+
+  const REQUIRED_FIELDS = ['firstName', 'lastName', 'email', 'details'];
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear a field's error as soon as the visitor types into it.
+    setErrors((prev) => {
+      if (!prev[name]) return prev;
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
   };
 
   const handleSelectField = (field, value) => {
@@ -27,10 +38,31 @@ export default function useContactForm(initialFields = {}) {
 
   const resetForm = () => {
     setFormData(defaultFields);
+    setErrors({});
+  };
+
+  /** Returns a map of empty required fields (Req 6.3). */
+  const validate = () => {
+    const found = {};
+    REQUIRED_FIELDS.forEach((field) => {
+      if (!formData[field] || !String(formData[field]).trim()) {
+        found[field] = true;
+      }
+    });
+    return found;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Block submission while any required field is empty; retain entered
+    // values and indicate which fields need input (Req 6.3).
+    const found = validate();
+    if (Object.keys(found).length > 0) {
+      setErrors(found);
+      return;
+    }
+    setErrors({});
     setStatus('loading');
 
     const message = [
@@ -58,6 +90,7 @@ export default function useContactForm(initialFields = {}) {
   return {
     formData,
     status,
+    errors,
     handleChange,
     handleSelectField,
     handleSubmit,

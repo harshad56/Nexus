@@ -50,10 +50,11 @@ export default function Pricing() {
           {plans.map((plan, index) => (
             <motion.div
               key={index}
+              data-reveal=""
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className={`pricing__card ${plan.recommended ? 'pricing__card--recommended' : ''}`}
             >
               {plan.recommended && (

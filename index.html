@@ -32,6 +32,17 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#0a0a0c" />
 
+    <!-- Apply persisted theme before paint to avoid flash (Req 3.5, 3.6) -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) { /* storage unavailable: default light theme applies */ }
+      })();
+    </script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 

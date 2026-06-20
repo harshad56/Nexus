@@ -72,6 +72,16 @@
   box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.05);
 }
 
+/* Invalid required field after a blocked submit (Req 6.3) */
+.contact__field.has-error .contact__input {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.contact__field.has-error .contact__floating-label {
+  color: #dc2626;
+}
+
 /* Floating Label Styles */
 .contact__floating-label {
   position: absolute;

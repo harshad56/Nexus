@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
+import useReducedMotion from '../hooks/useReducedMotion';
 import heroBg from '../assets/images/hero-bg.png';
 import '../styles/Hero.css';
 
@@ -9,18 +10,24 @@ const rotatingWords = ['Web Applications', 'Mobile Apps', 'SaaS Platforms', 'E-C
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Skip the rotating-word cycle entirely under reduced motion (Req 4.5).
+    if (prefersReducedMotion) return;
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % rotatingWords.length);
     }, 2800);
     return () => clearInterval(interval);
-  }, []);
+  }, [prefersReducedMotion]);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Under reduced motion, initial={false} starts elements at their final state.
+  const revealInitial = prefersReducedMotion ? false : undefined;
 
   return (
     <section id="home" className="hero noise-texture">
@@ -40,7 +47,7 @@ export default function Hero() {
       <div className="hero__content">
         <motion.div
           className="hero__badge"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={revealInitial ?? { opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
@@ -49,7 +56,7 @@ export default function Hero() {
 
         <motion.h1
           className="hero__title"
-          initial={{ opacity: 0, y: -20 }}
+          initial={revealInitial ?? { opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
@@ -59,31 +66,37 @@ export default function Hero() {
 
         <motion.p
           className="hero__subtitle"
-          initial={{ opacity: 0 }}
+          initial={revealInitial ?? { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           We build premium{' '}
           <span className="hero__rotating-word-wrapper">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={rotatingWords[wordIndex]}
-                className="hero__rotating-word text-gradient"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-              >
-                {rotatingWords[wordIndex]}
-              </motion.span>
-            </AnimatePresence>
+            {prefersReducedMotion ? (
+              <span className="hero__rotating-word text-gradient">
+                {rotatingWords[0]}
+              </span>
+            ) : (
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={rotatingWords[wordIndex]}
+                  className="hero__rotating-word text-gradient"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {rotatingWords[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            )}
           </span>{' '}
           that turn complex challenges into sleek, high-performing software solutions.
         </motion.p>
 
         <motion.div
           className="hero__cta-group"
-          initial={{ opacity: 0, y: 20 }}
+          initial={revealInitial ?? { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
@@ -105,7 +118,7 @@ export default function Hero() {
         {/* Inline Hero Stats */}
         <motion.div
           className="hero__stats"
-          initial={{ opacity: 0 }}
+          initial={revealInitial ?? { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.7 }}
         >
