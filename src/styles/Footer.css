@@ -32,6 +32,10 @@
   gap: 1rem;
 }
 
+.footer__logo {
+  margin-bottom: 0.5rem;
+}
+
 .footer__brand-name {
   font-size: 1.35rem;
   font-weight: 800;

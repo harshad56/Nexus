@@ -52,12 +52,12 @@ export default function Insights() {
   };
 
   return (
-    <section id="insights" className="insights section" style={{ borderTop: '1px solid var(--border-light)' }}>
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+    <section id="insights" className="insights insights--bordered section">
+      <div className="insights__wrapper">
         <div className="insights__header">
           <div className="insights__header-left">
-            <h2 className="section-header__subtitle" style={{ color: 'var(--accent-blue)', margin: 0 }}>Insights & Articles</h2>
-            <h3 className="section-header__title" style={{ textAlign: 'left', margin: '0.5rem 0 0 0' }}>
+            <h2 className="section-header__subtitle section-header__subtitle--blue section-header__subtitle--no-margin">Insights & Articles</h2>
+            <h3 className="section-header__title section-header__title--left section-header__title--spaced-top">
               Strategic Knowledge For Tech Entrepreneurs
             </h3>
           </div>

@@ -6,6 +6,16 @@
   position: relative;
 }
 
+.why-us--bordered {
+  border-top: 1px solid var(--border-light);
+}
+
+.why-us__wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
 /* ----- Grid ----- */
 
 .why-us__grid {
@@ -27,11 +37,6 @@
   flex-direction: column;
   gap: 1.25rem;
   transition: all 0.4s ease;
-  /* Stagger-reveal: each card gets --delay via inline style */
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease forwards;
-  animation-delay: var(--delay, 0s);
 }
 
 .why-us__card:hover {

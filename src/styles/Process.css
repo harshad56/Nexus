@@ -6,6 +6,12 @@
   position: relative;
 }
 
+.process__wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
 /* ----- Timeline Container ----- */
 
 .process__timeline {

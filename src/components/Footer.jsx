@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Phone, Linkedin, Github, Instagram, ArrowRight } from 'lucide-react';
 import Logo from './Logo';
+import { useToast } from './Toast';
 import '../styles/Footer.css';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
+  const toast = useToast();
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    // Simulate API call
-    alert(`Subscribed ${email} to the newsletter!`);
+    toast('Newsletter coming soon! We\'ll notify you at ' + email, 'info');
     setEmail('');
   };
 
@@ -19,24 +20,24 @@ export default function Footer() {
       <div className="footer__grid">
         {/* Company Info / Brand */}
         <div className="footer__brand">
-          <Logo size={60} showText={true} style={{ marginBottom: '0.5rem' }} />
+          <Logo size={60} showText={true} className="footer__logo" />
           <p className="footer__brand-desc">
             Engineering scalable digital products that help startups launch faster and grow smarter.
             Proudly based in Navi Mumbai, delivering globally.
           </p>
           <div className="footer__socials">
-            <span className="footer__social-link" aria-label="LinkedIn">
+            <a href="https://linkedin.com/company/nexuswebsolutions" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="LinkedIn">
               <Linkedin size={18} />
-            </span>
-            <span className="footer__social-link" aria-label="GitHub">
+            </a>
+            <a href="https://github.com/nexuswebsolutions" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="GitHub">
               <Github size={18} />
-            </span>
-            <span className="footer__social-link" aria-label="Instagram">
+            </a>
+            <a href="https://instagram.com/nexuswebsolutions" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Instagram">
               <Instagram size={18} />
-            </span>
-            <span className="footer__social-link" style={{ width: 'auto', padding: '0 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}>
+            </a>
+            <a href="https://g.page/nexuswebsolutions" target="_blank" rel="noopener noreferrer" className="footer__social-link footer__social-link--text">
               Google Reviews
-            </span>
+            </a>
           </div>
         </div>
 
@@ -52,7 +53,7 @@ export default function Footer() {
         </div>
 
         {/* Contact Info Column */}
-        <div className="footer__column" style={{ minWidth: '200px' }}>
+        <div className="footer__column footer__column--contact">
           <h3 className="footer__column-title">Contact Us</h3>
           <div className="footer__contact-item">
             <MapPin size={16} className="footer__contact-icon" />
@@ -81,7 +82,7 @@ export default function Footer() {
               required 
               className="footer__newsletter-input"
             />
-            <button type="submit" className="footer__newsletter-btn">
+            <button type="submit" className="footer__newsletter-btn" aria-label="Subscribe">
               <ArrowRight size={18} />
             </button>
           </form>
@@ -90,7 +91,7 @@ export default function Footer() {
 
       <div className="footer__bottom">
         <div className="footer__copyright">
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} NexusWeb Solutions. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} NexusWeb Solutions. All Rights Reserved.</p>
         </div>
         
         <div className="footer__legal-links">

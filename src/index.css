@@ -506,12 +506,32 @@ html {
   margin-bottom: 1rem;
 }
 
+.section-header__subtitle--blue {
+  color: var(--accent-blue) !important;
+}
+
+.section-header__subtitle--purple {
+  color: var(--accent-purple) !important;
+}
+
+.section-header__subtitle--no-margin {
+  margin: 0 !important;
+}
+
 .section-header__title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
   line-height: 1.15;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
+}
+
+.section-header__title--left {
+  text-align: left !important;
+}
+
+.section-header__title--spaced-top {
+  margin: 0.5rem 0 0 0 !important;
 }
 
 .section-header__desc {

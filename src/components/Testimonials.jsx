@@ -46,10 +46,10 @@ export default function Testimonials() {
   const current = testimonials[currentIndex];
 
   return (
-    <section className="testimonials section" style={{ borderTop: '1px solid var(--border-light)' }}>
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+    <section className="testimonials testimonials--bordered section">
+      <div className="testimonials__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Client Testimonials</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--purple">Client Testimonials</h2>
           <h3 className="section-header__title">What Our Partners Say About Us</h3>
         </div>
 

@@ -5,7 +5,7 @@ import '../styles/CTASection.css';
 
 export default function CTASection() {
   return (
-    <section className="cta section" style={{ borderTop: '1px solid var(--border-light)' }}>
+    <section className="cta cta--bordered section">
       {/* Background Image */}
       <img src={ctaBg} alt="" className="cta__bg" />
 
@@ -18,7 +18,7 @@ export default function CTASection() {
         <div className="cta__shape" />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+      <div className="cta__wrapper">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}

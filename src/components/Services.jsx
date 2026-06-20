@@ -65,11 +65,11 @@ export default function Services() {
 
   return (
     <section id="services" className="services section">
-      <div className="gradient-sphere" style={{ top: '20%', right: '-20%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(138,43,226,0.08) 0%, transparent 70%)', position: 'absolute', pointerEvents: 'none' }}></div>
+      <div className="services__gradient-sphere"></div>
 
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="services__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Our Services</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--purple">Our Services</h2>
           <h3 className="section-header__title">Comprehensive Engineering For Your Digital Growth</h3>
           <p className="section-header__desc">
             We don't do basic WordPress setups. We engineer custom React architectures, robust Node.js backend systems, and native mobile experiences that give your startup an unfair advantage.
@@ -105,7 +105,7 @@ export default function Services() {
                     <span key={i} className="services__tech-tag">{tech}</span>
                   ))}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.4rem', marginTop: '0.5rem' }}>
+                <div className="services__inquire-container">
                   <span className="services__price">{service.price}</span>
                   <a href="#contact" className="text-gradient services__inquire-link">
                     Inquire <ArrowRight size={16} className="services__inquire-arrow" />

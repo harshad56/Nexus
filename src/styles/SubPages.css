@@ -1,0 +1,175 @@
+/* =========================================
+   SUBPAGE SHARED STYLES
+   ========================================= */
+
+/* Common decorative sphere positioning */
+.subpage__sphere {
+  position: absolute;
+  pointer-events: none;
+}
+
+.subpage__sphere--top-right {
+  top: -10%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.06) 0%, transparent 70%);
+}
+
+.subpage__sphere--top-left {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+}
+
+.subpage__sphere--bottom-right {
+  bottom: 10%;
+  right: -20%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.06) 0%, transparent 70%);
+}
+
+.subpage__sphere--bottom-left {
+  bottom: 10%;
+  left: -20%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+}
+
+/* Hero title for subpages */
+.subpage__hero-title {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+/* Subpage description */
+.subpage__desc {
+  max-width: 800px;
+  font-size: 1.2rem;
+}
+
+/* Section container within subpages */
+.subpage__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+/* Service/Case study card layout */
+.subpage__card-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+}
+
+.subpage__card-main {
+  flex: 1 1 450px;
+}
+
+.subpage__card-sidebar {
+  flex: 1 1 300px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+}
+
+/* Section subtitle in subpages */
+.subpage__section-subtitle {
+  margin: 0 0 1rem 0;
+  display: block;
+  text-align: left;
+}
+
+/* Section title in subpages */
+.subpage__section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+/* Content blocks */
+.subpage__content-block {
+  margin-bottom: 1.5rem;
+}
+
+.subpage__content-block:last-child {
+  margin-bottom: 0;
+}
+
+.subpage__content-heading {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.subpage__content-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Specs panel */
+.subpage__specs-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.subpage__specs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  font-size: 0.9rem;
+}
+
+.subpage__specs-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.subpage__specs-price {
+  font-size: 1.25rem;
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+/* CTA block at bottom of subpage */
+.subpage__cta-block {
+  text-align: center;
+  padding: 5rem 0 2rem;
+}
+
+.subpage__cta-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.subpage__cta-text {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}

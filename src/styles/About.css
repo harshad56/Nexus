@@ -1,5 +1,5 @@
 /* =========================================
-   ABOUT SECTION
+   ABOUT SECTION & PAGE
    ========================================= */
 
 .about {
@@ -14,6 +14,10 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 4rem;
   align-items: start;
+}
+
+.about__grid--spaced {
+  margin-top: 5rem;
 }
 
 /* ----- Image Wrapper ----- */
@@ -81,12 +85,47 @@
   color: var(--accent-blue);
 }
 
+.about__founder-meta {
+  margin-top: 2rem;
+}
+
+.about__founder-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
 /* ----- Body Text ----- */
 
 .about__text {
   font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.8;
+}
+
+.about__quote {
+  padding: 2.5rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 16px 16px 0;
+}
+
+.about__quote-text {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.about__quote-subtext {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin: 1.5rem 0 0 0;
 }
 
 /* ----- Stats Grid ----- */
@@ -139,6 +178,10 @@
   gap: 1.25rem;
 }
 
+.about__values--spaced {
+  margin-top: 2rem;
+}
+
 .about__value-item {
   display: flex;
   align-items: flex-start;
@@ -183,34 +226,30 @@
   line-height: 1.6;
 }
 
-/* =========================================
-   RESPONSIVE - TABLET (768px)
-   ========================================= */
+/* ----- Mission Column ----- */
 
-@media (max-width: 768px) {
-  .about__grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .about__image {
-    min-height: 280px;
-  }
-
-  .about__stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .about__stat-number {
-    font-size: 1.6rem;
-  }
+.about__mission-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
 
-@media (max-width: 480px) {
-  .about__stats {
-    grid-template-columns: 1fr;
-  }
+/* ----- Action Buttons ----- */
+
+.about__action {
+  margin-top: 1rem;
+}
+
+.about__discuss-btn {
+  font-weight: bold;
+  border-bottom: 1px solid var(--accent-blue);
+  padding-bottom: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* =========================================
@@ -227,6 +266,10 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
+}
+
+.terminal-mockup--about {
+  max-width: 450px;
 }
 
 .terminal-mockup__header {
@@ -272,6 +315,36 @@
   margin: 0;
 }
 
+.terminal-mockup__prompt {
+  color: #52525b;
+}
+
+.terminal-mockup__line--blue {
+  margin: 0.5rem 0 0 0;
+  color: var(--accent-blue);
+}
+
+.terminal-mockup__line--purple {
+  color: var(--accent-purple);
+}
+
+.terminal-mockup__line--green {
+  color: #10b981;
+}
+
+.terminal-mockup__line--yellow {
+  margin: 1rem 0 0 0;
+  color: #eab308;
+}
+
+.terminal-mockup__line--margin-top {
+  margin: 1.5rem 0 0 0;
+}
+
+.terminal-mockup__highlight {
+  color: white;
+}
+
 .terminal-mockup__stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -292,8 +365,55 @@
   font-size: 1rem;
 }
 
-/* Mobile responsive adjustments */
+.terminal-mockup__stat-val--green {
+  color: #10b981;
+}
+
+.terminal-mockup__stat-val--red {
+  color: #ef4444;
+}
+
+.terminal-mockup__stat-val--blue {
+  color: var(--accent-blue);
+}
+
+/* =========================================
+   RESPONSIVE - TABLET (768px)
+   ========================================= */
+
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about__grid--spaced {
+    margin-top: 3rem;
+  }
+
+  .about__image {
+    min-height: 280px;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .about__stat-number {
+    font-size: 1.6rem;
+  }
+
+  .about__founder-profile {
+    margin-bottom: 2rem;
+  }
+}
+
 @media (max-width: 480px) {
+  .about__stats {
+    grid-template-columns: 1fr;
+  }
+  
   .terminal-mockup {
     padding: 1.25rem;
     min-height: 350px;
@@ -314,4 +434,3 @@
     font-size: 0.88rem;
   }
 }
-

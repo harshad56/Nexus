@@ -6,6 +6,16 @@
   position: relative;
 }
 
+.insights--bordered {
+  border-top: 1px solid var(--border-light);
+}
+
+.insights__wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
 /* ----- Header ----- */
 
 .insights__header {

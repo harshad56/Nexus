@@ -1,124 +1,97 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Loader2, CheckCircle, Send } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { Send, Loader2, CheckCircle, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
+import useContactForm from '../hooks/useContactForm';
 import '../styles/Contact.css';
 
-const projectTypes = ['Web App', 'Mobile App', 'Corporate Website', 'E-commerce', 'UI/UX Design', 'Other'];
-const budgetRanges = ['< ₹50k', '₹50k - ₹1L', '₹1L - ₹5L', '₹5L+'];
+const projectTypes = ['Web App', 'Mobile App', 'SaaS Platform', 'E-Commerce', 'UI/UX Design', 'API & Backend'];
+const budgetRanges = ['₹15K – ₹50K', '₹50K – ₹1.5L', '₹1.5L – ₹5L', '₹5L+'];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: '',
-    projectType: '',
-    budget: '',
-    details: ''
-  });
-  const [status, setStatus] = useState('idle');
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSelectType = (type) => {
-    setFormData({ ...formData, projectType: type });
-  };
-
-  const handleSelectBudget = (budget) => {
-    setFormData({ ...formData, budget: budget });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('loading');
-
-    const whatsappNumber = '919076450014';
-    const message = `Hi NexusWeb Solutions,\n\nI am ${formData.firstName} ${formData.lastName} from ${formData.company || 'N/A'}.\nEmail: ${formData.email}\n\n*Project Requirement*\nType: ${formData.projectType || 'Not specified'}\nBudget: ${formData.budget || 'Not specified'}\n\n*Details:*\n${formData.details}`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-
-    try {
-      await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        {
-          from_name: `${formData.firstName} ${formData.lastName}`,
-          from_email: formData.email,
-          company: formData.company,
-          project_type: formData.projectType,
-          budget: formData.budget,
-          message: formData.details,
-          to_name: 'Harshad Bagal',
-        },
-        'YOUR_PUBLIC_KEY'
-      );
-    } catch (error) {
-      console.log("EmailJS Note: Configure your keys. WhatsApp redirect succeeded.");
-    }
-
-    setStatus('success');
-    setFormData({ firstName: '', lastName: '', email: '', company: '', projectType: '', budget: '', details: '' });
-    setTimeout(() => setStatus('idle'), 5000);
-  };
+  const { formData, status, handleChange, handleSelectField, handleSubmit } = useContactForm();
 
   return (
     <section id="contact" className="contact section">
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="section-inner">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Initiate Partnership</h2>
-          <h3 className="section-header__title">Ready To Engineer Your Next Big Move?</h3>
-          <p className="section-header__desc">
-            Fill out the form below or reach us directly. Let's schedule a free strategy call to discuss your business objectives and technical requirements.
-          </p>
+          <h2 className="section-header__subtitle section-header__subtitle--purple">Start Your Project</h2>
+          <h3 className="section-header__title">Let's Engineer Something Great Together</h3>
         </div>
 
         <div className="contact__grid">
-          {/* Left Column: Form */}
+          {/* Left: Form */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
             className="contact__form glass-panel"
           >
-            <h4 className="contact__form-title">Tell Us About Your Project</h4>
-            
+            <h4 className="contact__form-title">Project Inquiry</h4>
+
             <form onSubmit={handleSubmit} className="contact__form-inner">
-              
               <div className="contact__form-row">
                 <div className={`contact__field ${formData.firstName ? 'has-value' : ''}`}>
-                  <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className="contact__input" />
-                  <label className="contact__floating-label">First Name *</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="contact__input"
+                    id="contact-firstName"
+                  />
+                  <label htmlFor="contact-firstName" className="contact__floating-label">First Name *</label>
                 </div>
                 <div className={`contact__field ${formData.lastName ? 'has-value' : ''}`}>
-                  <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className="contact__input" />
-                  <label className="contact__floating-label">Last Name *</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="contact__input"
+                    id="contact-lastName"
+                  />
+                  <label htmlFor="contact-lastName" className="contact__floating-label">Last Name *</label>
                 </div>
               </div>
 
-              <div className="contact__form-row">
-                <div className={`contact__field ${formData.email ? 'has-value' : ''}`}>
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} required className="contact__input" />
-                  <label className="contact__floating-label">Business Email *</label>
-                </div>
-                <div className={`contact__field ${formData.company ? 'has-value' : ''}`}>
-                  <input type="text" name="company" value={formData.company} onChange={handleChange} className="contact__input" />
-                  <label className="contact__floating-label">Company Name</label>
-                </div>
+              <div className={`contact__field ${formData.email ? 'has-value' : ''}`}>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="contact__input"
+                  id="contact-email"
+                />
+                <label htmlFor="contact-email" className="contact__floating-label">Business Email *</label>
               </div>
 
-              {/* Project Type Selection */}
+              <div className={`contact__field ${formData.company ? 'has-value' : ''}`}>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="contact__input"
+                  id="contact-company"
+                />
+                <label htmlFor="contact-company" className="contact__floating-label">Company Name</label>
+              </div>
+
+              {/* Project Type Pills */}
               <div className="contact__selection-group">
-                <label className="contact__selection-label">What are you looking for?</label>
+                <span className="contact__selection-label">Project Type</span>
                 <div className="contact__pill-container">
-                  {projectTypes.map(type => (
+                  {projectTypes.map((type) => (
                     <button
                       key={type}
                       type="button"
                       className={`contact__pill ${formData.projectType === type ? 'contact__pill--active' : ''}`}
-                      onClick={() => handleSelectType(type)}
+                      onClick={() => handleSelectField('projectType', type)}
                     >
                       {type}
                     </button>
@@ -126,26 +99,32 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Budget Selection */}
+              {/* Budget Range Pills */}
               <div className="contact__selection-group">
-                <label className="contact__selection-label">Estimated Budget</label>
+                <span className="contact__selection-label">Budget Range</span>
                 <div className="contact__pill-container">
-                  {budgetRanges.map(budget => (
+                  {budgetRanges.map((range) => (
                     <button
-                      key={budget}
+                      key={range}
                       type="button"
-                      className={`contact__pill ${formData.budget === budget ? 'contact__pill--active' : ''}`}
-                      onClick={() => handleSelectBudget(budget)}
+                      className={`contact__pill ${formData.budget === range ? 'contact__pill--active' : ''}`}
+                      onClick={() => handleSelectField('budget', range)}
                     >
-                      {budget}
+                      {range}
                     </button>
                   ))}
                 </div>
               </div>
 
               <div className={`contact__field ${formData.details ? 'has-value' : ''}`}>
-                <textarea rows="4" name="details" value={formData.details} onChange={handleChange} required className="contact__input contact__textarea" />
-                <label className="contact__floating-label">Project Details & Objectives *</label>
+                <textarea
+                  name="details"
+                  value={formData.details}
+                  onChange={handleChange}
+                  className="contact__input contact__textarea"
+                  id="contact-details"
+                />
+                <label htmlFor="contact-details" className="contact__floating-label">Tell us about your project *</label>
               </div>
 
               <button
@@ -154,61 +133,50 @@ export default function Contact() {
                 className={`contact__submit ${status === 'loading' ? 'contact__submit--loading' : ''} ${status === 'success' ? 'contact__submit--success' : ''}`}
               >
                 {status === 'loading' ? (
-                  <><Loader2 className="animate-spin" size={18} /> Processing Request...</>
+                  <><Loader2 className="animate-spin" size={20} /> Sending...</>
                 ) : status === 'success' ? (
-                  <><CheckCircle size={18} /> Directed to WhatsApp!</>
+                  <><CheckCircle size={20} /> Sent via WhatsApp!</>
                 ) : (
-                  <>Send Request <Send size={16} /></>
+                  <><Send size={18} /> Send Inquiry</>
                 )}
               </button>
             </form>
           </motion.div>
 
-          {/* Right Column: Info & Details */}
+          {/* Right: Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             className="contact__info"
           >
             <div className="contact__info-card glass-panel">
-              <h4 className="contact__info-title">Contact Information</h4>
+              <h4 className="contact__info-title">Direct Contact</h4>
               <p className="contact__info-text">
-                Have questions about pricing, project timelines, or tech stacks? Reach out directly and let's start co-creating your platform.
+                Prefer a direct conversation? We're available on WhatsApp and email for all business inquiries.
               </p>
 
               <div className="contact__info-list">
                 <div className="contact__info-item">
-                  <div className="contact__info-icon">
-                    <Mail size={20} />
-                  </div>
+                  <div className="contact__info-icon"><Phone size={20} /></div>
                   <div>
-                    <div className="contact__info-label">Business Inquiries</div>
-                    <div className="contact__info-value">
-                      <a href="mailto:info@nexuswebsolutions.in">info@nexuswebsolutions.in</a>
-                    </div>
+                    <div className="contact__info-label">Phone</div>
+                    <div className="contact__info-value"><a href="tel:+919076450014">+91 90764 50014</a></div>
                   </div>
                 </div>
-
                 <div className="contact__info-item">
-                  <div className="contact__info-icon">
-                    <Phone size={20} />
-                  </div>
+                  <div className="contact__info-icon"><Mail size={20} /></div>
                   <div>
-                    <div className="contact__info-label">Direct Line</div>
-                    <div className="contact__info-value">
-                      <a href="tel:+919076450014">+91 90764 50014</a>
-                    </div>
+                    <div className="contact__info-label">Email</div>
+                    <div className="contact__info-value"><a href="mailto:info@nexuswebsolutions.in">info@nexuswebsolutions.in</a></div>
                   </div>
                 </div>
-
                 <div className="contact__info-item">
-                  <div className="contact__info-icon">
-                    <MapPin size={20} />
-                  </div>
+                  <div className="contact__info-icon"><MapPin size={20} /></div>
                   <div>
-                    <div className="contact__info-label">HQ Location</div>
-                    <div className="contact__info-value">Navi Mumbai, Maharashtra, India</div>
+                    <div className="contact__info-label">Location</div>
+                    <div className="contact__info-value">Navi Mumbai, Maharashtra</div>
                   </div>
                 </div>
               </div>
@@ -219,15 +187,15 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="contact__whatsapp"
               >
-                Chat directly on WhatsApp
+                <MessageCircle size={18} /> Message on WhatsApp
               </a>
             </div>
 
-            {/* Embedded styled Dark Theme Map */}
+            {/* Google Map */}
             <div className="contact__map glass-panel">
               <iframe
-                title="NexusWeb Solutions HQ Map Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120682.02986422896!2d72.99849205!3d19.0308064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3c86121f1d1%3A0xe2b450ff719e7a2b!2sNavi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1684346850239!5m2!1sen!2sin"
+                title="NexusWeb Solutions Location Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120653.25055018619!2d72.9554030638521!3d19.08337834515574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sNavi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1714420000000!5m2!1sen!2sin"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

@@ -30,9 +30,9 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="portfolio section">
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="portfolio__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Featured Case Study</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--purple">Featured Case Study</h2>
           <h3 className="section-header__title">Architecting the Future of Technical Education</h3>
         </div>
 
@@ -48,7 +48,6 @@ export default function Portfolio() {
             className="portfolio__mockup-wrapper"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{ perspective: 1200 }}
           >
             <motion.div 
               className="portfolio__mockup"
@@ -75,28 +74,28 @@ export default function Portfolio() {
               An interactive, AI-powered programming bootcamp accessible from anywhere in the world.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <h5 style={{ fontSize: '1rem', color: 'var(--accent-blue)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
+            <div className="portfolio__details-points">
+              <div className="portfolio__detail-point">
+                <h5 className="portfolio__detail-header portfolio__detail-header--blue">
                   <CheckCircle2 size={16} /> The Objective
                 </h5>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 }}>
+                <p className="portfolio__detail-text">
                   The client needed a scalable online learning platform capable of hosting interactive coding environments, tracking student progress, and leveraging an AI-powered tutoring system to provide real-time feedback.
                 </p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <h5 style={{ fontSize: '1rem', color: 'var(--accent-purple)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
+              <div className="portfolio__detail-point">
+                <h5 className="portfolio__detail-header portfolio__detail-header--purple">
                   <CheckCircle2 size={16} /> The Solution
                 </h5>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 }}>
+                <p className="portfolio__detail-text">
                   We engineered a full-stack, highly concurrent application utilizing a modern serverless architecture. The platform features robust user authentication, a custom in-browser code execution engine, and seamless AI API integrations for automated code review.
                 </p>
               </div>
             </div>
 
-            <div style={{ marginTop: '0.5rem' }}>
-              <h5 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem', fontWeight: '600' }}>Technology Stack</h5>
+            <div className="portfolio__details-section">
+              <h5 className="portfolio__details-title">Technology Stack</h5>
               <div className="portfolio__tech-tags">
                 {['React', 'Node.js', 'Spring Boot', 'PostgreSQL', 'OpenAI API', 'Docker'].map(tech => (
                   <span key={tech} className="portfolio__tech-tag">
@@ -106,9 +105,9 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div style={{ marginTop: '0.5rem' }}>
-              <h5 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem', fontWeight: '600' }}>Business Impact</h5>
-              <ul className="portfolio__impact-list" style={{ padding: 0, margin: 0 }}>
+            <div className="portfolio__details-section">
+              <h5 className="portfolio__details-title">Business Impact</h5>
+              <ul className="portfolio__impact-list">
                 <li className="portfolio__impact-item">
                   <span className="portfolio__impact-pill">10K+</span> Concurrent users without performance degradation.
                 </li>
@@ -121,7 +120,7 @@ export default function Portfolio() {
               </ul>
             </div>
 
-            <div style={{ marginTop: '1rem' }}>
+            <div className="portfolio__link-wrapper">
               <a href="https://codeacademix.vercel.app" target="_blank" rel="noopener noreferrer" className="portfolio__live-link">
                 View Live Project <ExternalLink size={16} />
               </a>

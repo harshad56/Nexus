@@ -30,10 +30,10 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section className="why-us section" style={{ borderTop: '1px solid var(--border-light)' }}>
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+    <section className="why-us why-us--bordered section">
+      <div className="why-us__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-blue)' }}>The NexusWeb Advantage</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--blue">The NexusWeb Advantage</h2>
           <h3 className="section-header__title">Why Top Startups Partner With Us</h3>
         </div>
 
@@ -50,7 +50,6 @@ export default function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="why-us__card"
-              style={{ animation: 'none', opacity: 1, transform: 'none' }} // Override CSS auto animation so framer motion controls it when in view
             >
               <div className="why-us__icon">
                 {benefit.icon}

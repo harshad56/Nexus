@@ -1,0 +1,61 @@
+/* =========================================
+   LEGAL PAGES (Privacy, Terms, Refund, Cookie)
+   ========================================= */
+
+.legal-page {
+  padding: 8rem 2rem 4rem;
+  min-height: 80vh;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-page__title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.legal-page__date {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.legal-page__content {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.legal-page__heading {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.legal-page__text {
+  margin-bottom: 1rem;
+}
+
+.legal-page__list {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.legal-page__list li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .legal-page__title {
+    font-size: 2rem;
+  }
+
+  .legal-page__heading {
+    font-size: 1.25rem;
+  }
+}

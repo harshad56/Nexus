@@ -373,3 +373,21 @@
     display: none !important;
   }
 }
+
+.navbar__mobile-theme-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__mobile-theme-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.navbar__mobile-cta-wrapper {
+  display: block;
+  width: 100%;
+}
+

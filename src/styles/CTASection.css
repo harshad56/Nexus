@@ -8,6 +8,16 @@
   text-align: center;
 }
 
+.cta--bordered {
+  border-top: 1px solid var(--border-light);
+}
+
+.cta__wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
 /* ----- Background Image ----- */
 
 .cta__bg {

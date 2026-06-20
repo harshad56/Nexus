@@ -50,9 +50,9 @@ export default function Process() {
 
   return (
     <section id="process" className="process section">
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="process__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-blue)' }}>Our Process</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--blue">Our Process</h2>
           <h3 className="section-header__title">Strategic Execution For Every Project</h3>
         </div>
 

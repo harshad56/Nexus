@@ -39,9 +39,9 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="faq section">
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="faq__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-blue)' }}>Have Questions?</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--blue">Have Questions?</h2>
           <h3 className="section-header__title">Frequently Asked Questions</h3>
         </div>
 

@@ -8,12 +8,12 @@ export default function About() {
   return (
     <section id="about" className="about section">
       <div className="section-header">
-        <h2 className="section-header__subtitle" style={{ color: 'var(--accent-blue)' }}>Behind NexusWeb</h2>
+        <h2 className="section-header__subtitle section-header__subtitle--blue">Behind NexusWeb</h2>
         <h3 className="section-header__title">Your Local Software Partner With Global Standards</h3>
       </div>
       
       <div className="about__grid">
-        {/* Left: Terminal Console Mockup (Replacing Founder Portrait) */}
+        {/* Left: Terminal Console Mockup */}
         <motion.div 
           className="about__profile"
           initial={{ opacity: 0, x: -20 }}
@@ -34,34 +34,34 @@ export default function About() {
             
             {/* Terminal Body */}
             <div className="terminal-mockup__body">
-              <p><span style={{ color: '#52525b' }}>$</span> node run agency.js</p>
-              <p style={{ margin: '0.5rem 0 0 0', color: 'var(--accent-blue)' }}>✔ Initializing Custom Architecture...</p>
-              <p style={{ color: 'var(--accent-purple)' }}>✔ Decoupling UI from bloated templates...</p>
-              <p style={{ color: '#10b981' }}>✔ Optimization rating: 100/100 (Lighthouse)</p>
-              <p style={{ margin: '1rem 0 0 0', color: '#eab308' }}>&gt;&gt;&gt; Deploying Serverless Endpoint...</p>
+              <p><span className="terminal-mockup__prompt">$</span> node run agency.js</p>
+              <p className="terminal-mockup__line--blue">✔ Initializing Custom Architecture...</p>
+              <p className="terminal-mockup__line--purple">✔ Decoupling UI from bloated templates...</p>
+              <p className="terminal-mockup__line--green">✔ Optimization rating: 100/100 (Lighthouse)</p>
+              <p className="terminal-mockup__line--yellow">&gt;&gt;&gt; Deploying Serverless Endpoint...</p>
               <p>Location: Navi Mumbai, India [HQ]</p>
               <p>Target: PAN India Startups &amp; Enterprises</p>
-              <p style={{ margin: '1.5rem 0 0 0' }}><span style={{ color: 'white' }}>nexusweb-system</span>: active_running</p>
+              <p className="terminal-mockup__line--margin-top"><span className="terminal-mockup__highlight">nexusweb-system</span>: active_running</p>
             </div>
 
             {/* Performance Stats Overlay */}
             <div className="terminal-mockup__stats">
               <div>
                 <span className="terminal-mockup__stat-label">LATENCY</span>
-                <strong className="terminal-mockup__stat-val" style={{ color: '#10b981' }}>14ms</strong>
+                <strong className="terminal-mockup__stat-val terminal-mockup__stat-val--green">14ms</strong>
               </div>
               <div>
                 <span className="terminal-mockup__stat-label">TEMPLATES</span>
-                <strong className="terminal-mockup__stat-val" style={{ color: '#ef4444' }}>0%</strong>
+                <strong className="terminal-mockup__stat-val terminal-mockup__stat-val--red">0%</strong>
               </div>
               <div>
                 <span className="terminal-mockup__stat-label">PERFORMANCE</span>
-                <strong className="terminal-mockup__stat-val" style={{ color: 'var(--accent-blue)' }}>100%</strong>
+                <strong className="terminal-mockup__stat-val terminal-mockup__stat-val--blue">100%</strong>
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: '2rem' }}>
+          <div className="about__founder-meta">
             <h4 className="about__founder-name">Harshad Bagal</h4>
             <p className="about__founder-role text-gradient">Founder & Full Stack Engineer</p>
           </div>
@@ -102,7 +102,7 @@ export default function About() {
               <div className="about__stat-label">Client Satisfaction</div>
             </div>
             <div className="about__stat">
-              <strong className="about__stat-number" style={{ background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>PAN</strong>
+              <strong className="about__stat-number text-gradient">PAN</strong>
               <div className="about__stat-label">India Clients</div>
             </div>
           </div>
@@ -125,11 +125,10 @@ export default function About() {
             </div>
           </div>
 
-          <div style={{ marginTop: '1rem' }}>
+          <div className="about__action">
             <button
               onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="text-gradient"
-              style={{ fontWeight: 'bold', borderBottom: '1px solid var(--accent-blue)', paddingBottom: '0.2rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'none', border: 'none', cursor: 'pointer' }}
+              className="text-gradient about__discuss-btn"
             >
               Let's discuss your vision <Code2 size={16} />
             </button>

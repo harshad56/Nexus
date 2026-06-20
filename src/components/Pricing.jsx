@@ -8,7 +8,7 @@ const plans = [
     name: 'Starter Website',
     price: '₹15,000',
     desc: 'Perfect for local businesses looking to establish a professional digital footprint.',
-    features: ['Up to 5 Pages1', 'Mobile Responsive Layout', 'Contact Form Integration', 'Basic SEO Setup', '1 Month Free Support'],
+    features: ['Up to 5 Pages', 'Mobile Responsive Layout', 'Contact Form Integration', 'Basic SEO Setup', '1 Month Free Support'],
     recommended: false
   },
   {
@@ -37,9 +37,9 @@ const plans = [
 export default function Pricing() {
   return (
     <section id="pricing" className="pricing section">
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div className="pricing__wrapper">
         <div className="section-header">
-          <h2 className="section-header__subtitle" style={{ color: 'var(--accent-purple)' }}>Transparent Pricing</h2>
+          <h2 className="section-header__subtitle section-header__subtitle--purple">Transparent Pricing</h2>
           <h3 className="section-header__title">Enterprise Quality At Startup Friendly Rates</h3>
           <p className="section-header__desc">
             No hidden fees. We provide clear, milestone-based pricing structures so you know exactly what you are investing in.

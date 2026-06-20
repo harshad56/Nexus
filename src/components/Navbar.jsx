@@ -62,8 +62,6 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-
-
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   const navLinks = [
@@ -79,69 +77,58 @@ export default function Navbar() {
       <header
         className={`navbar ${isScrolled || isMobileMenuOpen ? 'navbar--scrolled' : ''}`}
       >
-      <div className="navbar__container">
-        {/* Brand / Logo */}
-        <div className="navbar__brand">
-          {location.pathname !== '/' && (
-            <button
-              className="navbar__back-btn"
-              onClick={() => navigate(-1)}
-              aria-label="Go back"
-            >
-              <ArrowLeft size={20} />
-            </button>
-          )}
-          <Link to="/" className="navbar__logo" onClick={closeMenu}>
-            <Logo size={48} showText={true} />
-          </Link>
+        <div className="navbar__container">
+          {/* Brand / Logo */}
+          <div className="navbar__brand">
+            {location.pathname !== '/' && (
+              <button
+                className="navbar__back-btn"
+                onClick={() => navigate(-1)}
+                aria-label="Go back"
+              >
+                <ArrowLeft size={20} />
+              </button>
+            )}
+            <Link to="/" className="navbar__logo" onClick={closeMenu}>
+              <Logo size={48} showText={true} />
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="navbar__links" aria-label="Main navigation">
+            <ul>
+              {navLinks.map(({ to, label }) => (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    className={`navbar__link ${location.pathname === to ? 'navbar__link--active' : ''}`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ThemeToggle />
+            <Link to="/contact">
+              <button className="navbar__cta">Start a Project</button>
+            </Link>
+          </nav>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            className="navbar__toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? (
+              <X size={24} color="var(--text-primary)" />
+            ) : (
+              <Menu size={24} color="var(--text-primary)" />
+            )}
+          </button>
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="navbar__links" aria-label="Main navigation">
-          <ul>
-            {navLinks.map(({ to, label }) => (
-              <li key={to}>
-                <Link
-                  to={to}
-                  className={`navbar__link ${location.pathname === to ? 'navbar__link--active' : ''}`}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ThemeToggle />
-          <Link to="/contact">
-            <button className="navbar__cta">Start a Project</button>
-          </Link>
-        </nav>
-
-        {/* Mobile Hamburger Toggle */}
-        <button
-          className="navbar__toggle"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMobileMenuOpen}
-          style={{
-            display: 'flex',
-            width: '40px',
-            height: '40px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            background: 'transparent',
-            border: 'none',
-            padding: 0
-          }}
-        >
-          {isMobileMenuOpen ? (
-            <X size={24} color="var(--text-primary)" />
-          ) : (
-            <Menu size={24} color="var(--text-primary)" />
-          )}
-        </button>
-      </div>
-    </header>
+      </header>
 
       {/* Mobile Menu Sidebar Drawer */}
       <AnimatePresence>
@@ -199,11 +186,11 @@ export default function Navbar() {
                 exit="exit"
                 className="navbar__mobile-bottom"
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '500' }}>Theme Mode</span>
+                <div className="navbar__mobile-theme-row">
+                  <span className="navbar__mobile-theme-label">Theme Mode</span>
                   <ThemeToggle />
                 </div>
-                <Link to="/contact" onClick={closeMenu} style={{ display: 'block', width: '100%' }}>
+                <Link to="/contact" onClick={closeMenu} className="navbar__mobile-cta-wrapper">
                   <button className="navbar__mobile-cta">
                     Start a Project
                   </button>
