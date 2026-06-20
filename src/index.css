@@ -136,6 +136,8 @@ a:focus:not(:focus-visible) {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-light);
   border-radius: 16px;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* =========================================
@@ -208,6 +210,9 @@ a:focus:not(:focus-visible) {
   border-radius: 50%;
   filter: blur(120px);
   animation: blob-float 20s infinite alternate ease-in-out;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   /* background-color transitions smoothly via global * selector */
 }
 
@@ -233,10 +238,10 @@ a:focus:not(:focus-visible) {
 }
 
 @keyframes blob-float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(5%, 5%) scale(1.05); }
-  66% { transform: translate(-2%, 8%) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(5%, 5%, 0) scale(1.05); }
+  66% { transform: translate3d(-2%, 8%, 0) scale(0.95); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
 /* =========================================
@@ -317,7 +322,13 @@ a:focus:not(:focus-visible) {
     padding-right: 1rem !important;
   }
 
+  .bg-glow-container {
+    display: none !important;
+  }
+
   .glass-panel {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
     padding: 1.5rem !important;
   }
 

@@ -20,6 +20,8 @@
   background: radial-gradient(circle, rgba(138,43,226,0.08) 0%, transparent 70%);
   position: absolute;
   pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* ----- Bento Grid ----- */
@@ -234,6 +236,10 @@
     scroll-snap-align: center;
     padding: 1.5rem;
     flex-shrink: 0;
+  }
+
+  .services__gradient-sphere {
+    display: none !important;
   }
 }
 
