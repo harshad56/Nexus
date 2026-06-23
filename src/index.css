@@ -18,10 +18,10 @@
   --bg-navbar: rgba(246, 248, 250, 0.98);
   --bg-mobile-menu: rgba(246, 248, 250, 0.97);
   --hero-grid-color: rgba(0, 0, 0, 0.05);
-  --hero-bg-opacity: 0.08;
+  --hero-bg-opacity: 0.6;
   --hero-bg-blend-mode: normal;
-  --hero-bg-filter: grayscale(100%) brightness(0.95);
-  --hero-wash: rgba(246, 248, 250, 0.85);
+  --hero-bg-filter: contrast(1.05) saturate(1.05);
+  --hero-wash: rgba(246, 248, 250, 0.45);
   --logo-text: #0f172a;
   --logo-tagline: #4f46e5;
   --bg-recommended-card: #ffffff;
