@@ -166,15 +166,26 @@
 
 .hero__rotating-word-wrapper {
   display: inline-block;
-  min-width: 200px;
-  text-align: left;
   position: relative;
   vertical-align: bottom;
+}
+
+.hero__rotating-word-placeholder {
+  display: inline-block;
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero__rotating-word {
   display: inline-block;
   font-weight: 800;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  white-space: nowrap;
   /* Solid high-contrast color so it never disappears against the hero image.
      Overrides .text-gradient clipping which could render invisible. */
   -webkit-text-fill-color: var(--accent-purple);
@@ -333,7 +344,7 @@
   }
 
   .hero__rotating-word-wrapper {
-    min-width: 150px;
+    min-width: 0;
   }
 
   .hero__cta-group {

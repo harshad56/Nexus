@@ -77,18 +77,23 @@ export default function Hero() {
                 {rotatingWords[0]}
               </span>
             ) : (
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={rotatingWords[wordIndex]}
-                  className="hero__rotating-word text-gradient"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
-                >
+              <>
+                <span className="hero__rotating-word-placeholder" aria-hidden="true">
                   {rotatingWords[wordIndex]}
-                </motion.span>
-              </AnimatePresence>
+                </span>
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={rotatingWords[wordIndex]}
+                    className="hero__rotating-word text-gradient"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                  >
+                    {rotatingWords[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </>
             )}
           </span>{' '}
           that turn complex challenges into sleek, high-performing software solutions.
