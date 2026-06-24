@@ -142,6 +142,9 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
+}
+
+:root[data-theme="dark"] .hero__title {
   text-shadow: 0 2px 18px var(--bg-dark);
 }
 
@@ -153,6 +156,9 @@
   max-width: 650px;
   margin: 0 auto 2.5rem;
   line-height: 1.7;
+}
+
+:root[data-theme="dark"] .hero__subtitle {
   text-shadow: 0 1px 4px var(--bg-dark);
 }
 
